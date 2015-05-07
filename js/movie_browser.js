@@ -5,12 +5,20 @@
 function search(keyword) {
   var url = 'http://www.omdbapi.com/?s='+escape(keyword);
 
-  $.getJSON(url).done(
+  $.getJSON(url)
+  .done(function(imdbResponse){
     // We want to use both the search keyword and the imdb response in imdbDone
     //   We use an anonymous function to pass both.
-    function(imdbResponse){
-      imdbDone(keyword, imdbResponse)
-    });
+    imdbDone(keyword, imdbResponse);
+  })
+  .fail(function(imdbResonse, textStatus, errorMessage){
+    var message = "Sorry, we had issues retrieving movie data for '" + keyword + "'";
+    if (errorMessage){
+      message += "(" + errorMessage + ")";
+    }
+    message += ".  Please try again.";
+    $('#movie-detail').html("<h2 class='fail'>" + message + "</h2>");
+  });
 }
 
 function imdbDone(searchKeyword, imdbSearchData) {
