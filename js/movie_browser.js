@@ -5,16 +5,23 @@
 function search(keyword) {
   var url = 'http://www.omdbapi.com/?s='+escape(keyword);
 
-  $.getJSON(url).then(function(data) {
-    var display = '<option value="">Movies matching "'+ keyword +'"...</option>';
+  $.getJSON(url).done(
+    // We want to use both the search keyword and the imdb response in imdbDone
+    //   We use an anonymous function to pass both.
+    function(imdbResponse){
+      imdbDone(keyword, imdbResponse)
+    });
+}
 
-    for (var i=0; i < data.Search.length; i++) {
-      var movie = data.Search[i];
-      display += ['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('');
-    }
+function imdbDone(searchKeyword, imdbSearchData) {
+  var display = '<option value="">Movies matching "'+ searchKeyword +'"...</option>';
 
-    $('#movie-select').show().html(display);
-  });
+  for (var i=0; i < imdbSearchData.Search.length; i++) {
+    var movie = imdbSearchData.Search[i];
+    display += ['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('');
+  }
+
+  $('#movie-select').show().html(display);
 }
 
 function show(imdbId) {
@@ -22,9 +29,9 @@ function show(imdbId) {
 
   var url = 'http://www.omdbapi.com/?i='+imdbId;
 
-  $.getJSON(url).then(function(data) {
-    var detail = '<h2>' + data.Title + '</h2>';
-    detail += '<img src="'+ data.Poster +'" alt="'+ data.Title +'">';
+  $.getJSON(url).then(function(imdbMovieData) {
+    var detail = '<h2>' + imdbMovieData.Title + '</h2>';
+    detail += '<img src="'+ imdbMovieData.Poster +'" alt="'+ imdbMovieData.Title +'">';
     $('#movie-detail').html(detail);
   });
 }
