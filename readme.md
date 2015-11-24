@@ -4,11 +4,14 @@ Use the [Open Movie Database API](http://www.omdbapi.com/) to build a single-pag
 
 ## Requirements
 
- 1. The "#movie-select" field is hidden by default.
- 
- 2. The user may search for a movie keyword; this will reveal the "#movie-select" field, and populate it with all search results. The first select option should read "Movies matching '*KEYWORD*'…".
- 
- 3. Whenever the "#movie-select" field changes (use a "change" event), load the new selection's data, and then populate its title and image within the "#movie-detail" region.
+ 1. The `"#movie-select"` should be hidden by default.
+
+ 2. When the user may submits a search for a movie keyword...
+  - the `"#movie-select"` field should be un-hidden,
+  - it should be populated with all search results,
+  - and the first select option should read "Movies matching `keyword`…".
+
+ 3. Whenever the user selects a title from the `#movie-select` field (HINT: listen for a `"change"` event), the app should populate the `"#movie-detail"` div with that movie's title and poster image.
 
 ## Take a look:
 
