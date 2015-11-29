@@ -3,7 +3,7 @@
 
 
 function search(keyword) {
-  var url = 'http://www.omdbapi.com/?s='+escape(keyword);
+  var url = 'http://www.omdbapi.com/?s=' + encodeURI(keyword);
 
   $.getJSON(url)
   .done(function(imdbResponse){
