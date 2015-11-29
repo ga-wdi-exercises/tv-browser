@@ -4,17 +4,28 @@
 $(document).ready(function(){
 
   $("#movie-select").hide();
-  $("#movie-detail").append("<h3  id=\"movieTitle\"></h3><p  id=\"movieYear\"></p><p id=\"movieType\"></p><img id=\"movieImage\" src=\"\">");
+  $("#movie-detail").remove();
+  $("#movie-select").after("<div id=\"movie-detail\"><h3  id=\"movieTitle\"></h3><p  id=\"movieYear\"></p><p id=\"movieType\"></p><img id=\"movieImage\" src=\"\"></div>");
+  $("#search").append("<div id=\"searchingFor\"></div>");
+
+  function movieDeets(thatMovie){
+    if (thatMovie === "clear"){
+      $("#movieTitle").text("");
+      $("#movieYear").text("");
+      $("#movieType").text("");
+      $("#movieImage").attr("src","");
+      $("#movieImage").attr("alt","");
+    }
+    else{
+      $("#movieTitle").text(thatMovie.Title);
+      $("#movieYear").text(thatMovie.Year);
+      $("#movieType").text(thatMovie.Type);
+      $("#movieImage").attr("src", thatMovie.Poster);
+      $("#movieImage").attr("alt", thatMovie.Title+" - Poster");
+    }
+  }
 
   function searchIMDb(searchTerm){
-    event.preventDefault();
-
-    $("#movie-select").show();
-    $("#searchingFor").text("Results for  \'"+searchTerm+"\'...");
-    $("#movieTitle").text("");
-    $("#movieYear").text("");
-    $("#movieType").text("");
-    $("#movieImage").attr("src","");
     var url = "http://www.omdbapi.com/?s="+escape(searchTerm);
 
     $.ajax({
@@ -34,10 +45,7 @@ $(document).ready(function(){
       $("#movie-select").change( function(){
         if (this.value !== ""){
           var searchResult = data.Search[this.value];
-          $("#movieTitle").text("Title: "+searchResult.Title);
-          $("#movieYear").text("Year: "+searchResult.Year);
-          $("#movieType").text("Type: "+searchResult.Type);
-          $("#movieImage").attr("src", searchResult.Poster);
+          movieDeets(searchResult);
         }
       });
     }).fail(function(){
@@ -45,9 +53,16 @@ $(document).ready(function(){
     });
   }
 
-  $("#search").append("<div id=\"searchingFor\"></div>");
+
   $(":submit").on("click", function(){
+    event.preventDefault();
+    movieDeets("clear");
+    $("#movie-select").show();
+
     searchTerm = $("#movie-search").val();
+
+    $("#searchingFor").text("Results for  \'"+searchTerm+"\'...");
+
     searchIMDb(searchTerm);
   });
 
