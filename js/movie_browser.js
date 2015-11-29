@@ -5,16 +5,12 @@ $(document).ready(function(){
 
   $("#movie-select").hide();
   $("#movie-detail").remove();
-  $("#movie-select").after("<div id=\"movie-detail\"><h3  id=\"movieTitle\"></h3><p  id=\"movieYear\"></p><p id=\"movieType\"></p><img id=\"movieImage\" src=\"\"></div>");
   $("#search").append("<div id=\"searchingFor\"></div>");
 
   function movieDeets(thatMovie){
     if (thatMovie === "clear"){
-      $("#movieTitle").text("");
-      $("#movieYear").text("");
-      $("#movieType").text("");
-      $("#movieImage").attr("src","");
-      $("#movieImage").attr("alt","");
+      $("#movie-detail").remove();
+      $("#movie-select").after("<div id=\"movie-detail\"><h3  id=\"movieTitle\"></h3><p  id=\"movieYear\"></p><p id=\"movieType\"></p><img id=\"movieImage\" src=\"\"></div>");
     }
     else{
       $("#movieTitle").text(thatMovie.Title);
@@ -37,6 +33,11 @@ $(document).ready(function(){
 
       $("#movie-select").append("<option  value=\"\"  id=\""+searchTerm+"\" > Movies matching \'"+searchTerm+"\'...</option> ");
 
+      if (data.Error === "Movie not found!"){
+        $("#movieTitle").text("Movies not found");
+      }
+
+      else{
       for (i=0; i< data.Search.length; i++){
         var searchResult = data.Search[i];
         $("#movie-select").append("<option  value=\""+i+"\"  id=\""+searchTerm+"\" >"+searchResult.Title+"</option> ");
@@ -48,6 +49,7 @@ $(document).ready(function(){
           movieDeets(searchResult);
         }
       });
+    }
     }).fail(function(){
       console.log("Ajax request fails!");
     });
@@ -58,6 +60,7 @@ $(document).ready(function(){
     event.preventDefault();
     movieDeets("clear");
     $("#movie-select").show();
+    $("option").remove();
 
     searchTerm = $("#movie-search").val();
 
