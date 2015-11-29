@@ -4,43 +4,40 @@
 $(document).ready(function(){
 
   $("#movie-select").hide();
+  $("#movie-detail").append("<h3  id=\"movieTitle\"></h3><p  id=\"movieYear\"></p><p id=\"movieType\"></p><img id=\"movieImage\" src=\"\">");
 
   function searchIMDb(searchTerm){
     event.preventDefault();
 
-    $("#searchingFor").text("Results for  \'"+searchTerm+"\'...");
-
     $("#movie-select").show();
-
+    $("#searchingFor").text("Results for  \'"+searchTerm+"\'...");
+    $("#movieTitle").text("");
+    $("#movieYear").text("");
+    $("#movieType").text("");
     var url = "http://www.omdbapi.com/?s="+escape(searchTerm);
 
     $.ajax({
       url: url,
       dataType: "json",
-      // success: function(data) {
-      //   console.log(data);
-      //   for (i=0; i< data.Search.length; i++){
-      //     var searchResult = data.Search[i];
-      //     $("#movie-detail").append("<p> Movie "+i+", Title: "+searchResult.Title+"</p>");
-      //   }
-      //   }
     }).done(function(data){
       console.log(data);
-      $("#searchResults").remove();
-      $("#movie-detail").after("<div id=\"searchResults\"></div>");
+      $("option").remove();
+
+      $("#movie-select").append("<option  value=\"\"  id=\""+searchTerm+"\" > Movies matching \'"+searchTerm+"\'...</option> ");
+
       for (i=0; i< data.Search.length; i++){
         var searchResult = data.Search[i];
-        $("#searchResults").append("<p> Movie "+(i+1)+", Title: "+searchResult.Title+"</p>");
+        $("#movie-select").append("<option  value=\""+i+"\"  id=\""+searchTerm+"\" >"+searchResult.Title+"</option> ");
       }
 
-      // for (var i=0; i< url.Search.length(); i++ ){
-      //   var searchResult = url.Search[i];
-      //   $("movie-detail").append("<p>"+searchResult.Title+"</p>");
-      //
-      //
-      //  var display = '<option value="">Movies matching "'+ searchTerm +'"...</option>';
-      // display += ['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('');
-      // }
+      $("#movie-select").change( function(){
+        if (this.value !== ""){
+          var searchResult = data.Search[this.value];
+          $("#movieTitle").text("Title: "+searchResult.Title);
+          $("#movieYear").text("Year: "+searchResult.Year);
+          $("#movieType").text("Type: "+searchResult.Type);
+        }
+      });
     }).fail(function(){
       console.log("Ajax request fails!");
     }).always(function(){
