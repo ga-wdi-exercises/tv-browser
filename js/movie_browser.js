@@ -14,6 +14,7 @@ $(document).ready(function(){
     $("#movieTitle").text("");
     $("#movieYear").text("");
     $("#movieType").text("");
+    $("#movieImage").attr("src","");
     var url = "http://www.omdbapi.com/?s="+escape(searchTerm);
 
     $.ajax({
@@ -36,12 +37,11 @@ $(document).ready(function(){
           $("#movieTitle").text("Title: "+searchResult.Title);
           $("#movieYear").text("Year: "+searchResult.Year);
           $("#movieType").text("Type: "+searchResult.Type);
+          $("#movieImage").attr("src", searchResult.Poster);
         }
       });
     }).fail(function(){
       console.log("Ajax request fails!");
-    }).always(function(){
-      console.log("This always happens regardless of successful ajax request or not.");
     });
   }
 
