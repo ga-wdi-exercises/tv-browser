@@ -18,7 +18,7 @@ function getAPI(keyword){
       $("#movie-select").append($('<option id='+response.Search[i].imdbID+'>'+response.Search[i].Title+'</option>'))
     }
     addListener();
-//show the dropdown menu
+//show the dropdown menu GRAH!
     $("#movie-select").show();
   })
 }
