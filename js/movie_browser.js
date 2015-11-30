@@ -23,7 +23,6 @@ function getAPI(keyword){
   })
 }
 function addListener(){
-//check for a change in the select menu
   $("#movie-select").change("submit", function(e){
     if ($('select option:selected').attr('id')) {
       $.ajax({
