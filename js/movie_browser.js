@@ -42,3 +42,13 @@ function show(imdbId) {
     $('#movie-detail').html(detail);
   });
 }
+
+
+$('#search').on('submit', function(evt) {
+  evt.preventDefault();
+  var $search = $('#movie-search');
+  var keyword = $search.val();
+  $search.val('');
+
+  search(keyword);
+});
