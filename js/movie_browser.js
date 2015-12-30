@@ -9,9 +9,24 @@ $.getJSON(url)
 .done(function(imdbResponse){
 
   imdbDone(keyword, imdbResponse);
-});
-
-.fail(function(imdbResponse, textStatus, errorMessage){
-  
 })
+.fail(function(imdbResponse, textStatus, errorMessage){
+  var message = "Sorry, we had issues retrieving movie data for ' "+ keyword + " ' ";
+  if (errorMessage) {
+    message += "("+errorMessage + ")";
+  }
+  message += ". Please try again.";
+$('#movie-detail').html("<h2 class ='fail'>" + message + "</h2>");
+});
+}
+
+function imdbDone(searchKeyword, imdbSearchData) {
+  var display = '<option value="">Movies matching "'+ searchKeyword +'"...</option>';
+
+  for (var i=0; i < imdbSearchData.Search.length; i++) {
+    var movie = imdbSearchData.Search[i];
+    display += ['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('');
+  }
+
+  $('#movie-select').show().html(display);
 }
