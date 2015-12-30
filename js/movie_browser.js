@@ -52,3 +52,7 @@ $('#search').on('submit', function(evt) {
 
   search(keyword);
 });
+
+$('#movie-select').hide().on('change', function() {
+  show(this.value);
+});
