@@ -30,3 +30,15 @@ function imdbDone(searchKeyword, imdbSearchData) {
 
   $('#movie-select').show().html(display);
 }
+
+function show(imdbId) {
+  if (!imdbId) return;
+
+  var url = 'http://www.omdbapi.com/?i='+imdbId;
+
+  $.getJSON(url).then(function(imdbMovieData) {
+    var detail = '<h2>' + imdbMovieData.Title + '</h2>';
+    detail += '<img src="'+ imdbMovieData.Poster +'" alt="'+ imdbMovieData.Title +'">';
+    $('#movie-detail').html(detail);
+  });
+}
