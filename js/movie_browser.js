@@ -1,1 +1,64 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3 4(5){1 9=\'w://l.m.q/?s=\'+M(5);$.B(9).L(3(n){u(5,n)}).o(3(O,Q,k){1 8="P, K J E D 2 C r \'"+5+"\'";p(k){8+="("+k+")"}8+=".  G I H.";$(\'#2-6\').c("<b S=\'o\'>"+8+"</b>")})}3 u(t,h){1 e=\'<7 g="">12 13 "\'+t+\'"...</7>\';r(1 i=0;i<h.v.U;i++){1 2=h.v[i];e+=[\'<7 g="\',2.W,\'">\',2.d,\'</7>\'].X(\'\')}$(\'#2-A\').j().c(e)}3 j(f){p(!f)Z;1 9=\'w://l.m.q/?i=\'+f;$.B(9).15(3(a){1 6=\'<b>\'+a.d+\'</b>\';6+=\'<T R="\'+a.14+\'" Y="\'+a.d+\'">\';$(\'#2-6\').c(6)})}$(\'#4\').y(\'V\',3(z){z.10();1 $4=$(\'#2-4\');1 5=$4.x();$4.x(\'\');4(5)});$(\'#2-A\').11().y(\'F\',3(){j(N.g)});',62,68,'|var|movie|function|search|keyword|detail|option|message|url|imdbMovieData|h2|html|Title|display|imdbId|value|imdbSearchData||show|errorMessage|www|omdbapi|imdbResponse|fail|if|com|for||searchKeyword|imdbDone|Search|http|val|on|evt|select|getJSON|data|retrieving|issues|change|Please|again|try|had|we|done|escape|this|imdbResonse|Sorry|textStatus|src|class|img|length|submit|imdbID|join|alt|return|preventDefault|hide|Movies|matching|Poster|then'.split('|'),0,{}))
+// API Docs at:
+// http://www.omdbapi.com
+
+
+function search(keyword) {
+  var url = 'http://www.omdbapi.com/?s='+escape(keyword);
+
+  $.getJSON(url)
+  .done(function(imdbResponse){
+    // We want to use both the search keyword and the imdb response in imdbDone
+    //   We use an anonymous function to pass both.
+    imdbDone(keyword, imdbResponse);
+  })
+  .fail(function(imdbResonse, textStatus, errorMessage){
+    var message = "Sorry, we had issues retrieving movie data for '" + keyword + "'";
+    if (errorMessage){
+      message += "(" + errorMessage + ")";
+    }
+    message += ".  Please try again.";
+    $('#movie-detail').html("<h2 class='fail'>" + message + "</h2>");
+  });
+}
+
+function imdbDone(searchKeyword, imdbSearchData) {
+  var display = '<option value="">Movies matching "'+ searchKeyword +'"...</option>';
+
+  for (var i=0; i < imdbSearchData.Search.length; i++) {
+    var movie = imdbSearchData.Search[i];
+    display += ['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('');
+  }
+
+  $('#movie-select').show().html(display);
+}
+
+function show(imdbId) {
+  if (!imdbId) return;
+
+  var url = 'http://www.omdbapi.com/?i='+imdbId;
+
+  $.getJSON(url).then(function(imdbMovieData) {
+    var detail = '<h2>' + imdbMovieData.Title + '</h2>';
+    detail += '<img src="'+ imdbMovieData.Poster +'" alt="'+ imdbMovieData.Title +'">';
+    $('#movie-detail').html(detail);
+  });
+}
+
+
+// Search form:
+
+$('#search').on('submit', function(evt) {
+  evt.preventDefault();
+  var $search = $('#movie-search');
+  var keyword = $search.val();
+  $search.val('');
+
+  search(keyword);
+});
+
+
+// Movie selector:
+
+$('#movie-select').hide().on('change', function() {
+  show(this.value);
+});
