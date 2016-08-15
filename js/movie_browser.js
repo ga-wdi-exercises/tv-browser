@@ -15,12 +15,12 @@ $(document).ready(function(){
       dataType: "json"
     }).done(function(response){
       $("#movie-select").show().empty().append($("<option>Movies matching " + query + "...</option>"));
-      console.log(response)
-      // for(i=0; i<response.length; i++){
-      //   $("<option value = \"></option>")
-      //   $("#movie-select").append
-      //
-      // }
+      // console.log(response.Search.length)
+      for(i=0; i<response.Search.length; i++){
+        // console.log(response.Search[i].Title)
+        var result =  $("<option value = \"" + response.Search[i].Title + "\">" + response.Search[i].Title + "</option>")
+        $("#movie-select").append(result);
+      }
     }).fail(function(){
       console.log("bad request broh")
     }).always(function(){
