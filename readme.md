@@ -15,4 +15,4 @@ Use the [Open Movie Database API](http://www.omdbapi.com/) to build a single-pag
 
 ## Take a look:
 
-http://ga-dc.github.io/movie-browser
+http://ga-wdi-exercises.github.io/movie-browser/ 
