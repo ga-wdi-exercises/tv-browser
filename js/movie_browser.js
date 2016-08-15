@@ -15,12 +15,18 @@ $(document).ready(function(){
       dataType: "json"
     }).done(function(response){
       $("#movie-select").show().empty().append($("<option>Movies matching " + query + "...</option>"));
-      // console.log(response.Search.length)
       for(i=0; i<response.Search.length; i++){
-        // console.log(response.Search[i].Title)
-        var result =  $("<option value = \"" + response.Search[i].Title + "\">" + response.Search[i].Title + "</option>")
+        console.log(response.Search[i])
+        var result =  $("<option value = \"" + i + "\">" + response.Search[i].Title + "</option>")
         $("#movie-select").append(result);
       }
+      $("#movie-select").change(function(){
+        // console.log($(this).val())
+        var selection = $(this).val();
+        var selectionTitle = response.Search[selection].Title;
+        var posterUrl = response.Search[selection].Poster;
+        $("#movie-detail").html("<h2>" + selectionTitle + "</h2><img src=\"" + posterUrl + "\"></img>");
+      })
     }).fail(function(){
       console.log("bad request broh")
     }).always(function(){
