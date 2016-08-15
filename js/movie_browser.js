@@ -11,15 +11,23 @@ $(document).ready(function() {
       e.preventDefault();
       // reveal movie select
        $movieSelect.show();
-    $.ajax({
-      type: "get",
-      dataType: "json",
-      url: "http://www.omdbapi.com/?s=Ground&r=json"
-      }).done(function(res){
-        console.log(res)
-      }).fail(function(res) {
-          console.log("eeep, errors!");
-      })
+       var $keyword = $("#movie-search").val();
+      $.ajax({
+        type: "get",
+        dataType: "json",
+        url: "http://www.omdbapi.com/?s=" + $keyword
+        }).done(function(res){
+          for (i = 0; i < res.Search.length; i++) {
+          console.log(res.Search[i]);
+          var option = "<option value='" + res.Search[i] + "'>" + res.Search[i].Title + "</option>";
+          $movieSelect.append(option)
+        };
+        $movieSelect.on("change", function() {
+          console.log("changed!")
+        })
+        }).fail(function(res) {
+            console.log("eeep, errors!");
+        })
   })
 
 });
