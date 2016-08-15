@@ -4,9 +4,9 @@ Use the [Open Movie Database API](http://www.omdbapi.com/) to build a single-pag
 
 ## Requirements
 
- 1. The `"#movie-select"` should be hidden by default.
+ 1. The `"#movie-select"` should be hidden by default. <!-- not hidden by default -->
 
- 2. When the user may submits a search for a movie keyword...
+ 2. When the user submits a search for a movie keyword...  <!-- there was a typo on this line -->
   - the `"#movie-select"` field should be un-hidden,
   - it should be populated with all search results,
   - and the first select option should read "Movies matching `keyword`…".
