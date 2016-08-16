@@ -11,8 +11,12 @@ SearchView.prototype= {
         for (i=0;i<searchTerms.response.length;i++){
             $(this.el).append('<option value='+ i +'>'+searchTerms.response[i].Title +'</option>');
         }
+        function getVal(sel){
+            return (sel.value)
+        }
         $(this.el).change(function(){
-
+            var yas = getVal(this)
+            $('#movie-detail').append('<h1>'+searchTerms.response[yas].Title+'</h1>')
         })
     }
 }
