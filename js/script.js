@@ -11,7 +11,8 @@ $(document).ready(function() {
         })
         .done(function(response) {
             console.log("success");
-            console.log(response)
+            $('#movie-select').empty()
+            $('#movie-detail').empty()
             var searchTerms = new Search(response)
             var searchView = new SearchView(searchTerms)
         })
