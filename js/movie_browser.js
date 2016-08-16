@@ -23,9 +23,15 @@ $(document).ready(function(evt) {
           $("#movie-detail").empty();
           var optionSelected = $("option:selected", this);
           var valueSelected = this.value;
-          var movieObject = response.Search.
           $("#movie-detail").append('<h1>'+valueSelected+'</h1>');
-          $("#movie-detail").append('<img src="'+valueSelected.Poster+'"/>');
+          for (var i = 0; i < response.Search.length; i += 1) {
+            for (var prop in response.Search[i]) {
+              if (response.Search[i].Title == valueSelected) {
+                $("#movie-detail").append('<img src="'+response.Search[i].Poster+'" />');
+                break;
+              }
+            }
+          }
         })
       }).fail(function() {
 
