@@ -35,7 +35,14 @@ $(document).ready(function() {
            dataType: "json",
            url: "http://www.omdbapi.com/?t=" + movieSelected
            }).done(function(res){
-             $details.append("<h1>" + res.Title + "</h1><img src='" + res.Poster + "'/>" + "<p>" + res.Actors + "</p>" + "<p>" + res.Plot + "</p>");
+             var poster = res.Poster
+             if (poster === 'N/A') {
+               poster = ''
+             } else {
+               poster = "<img src='" + poster + "'/>"
+             }
+             var showDetails = "<h1>" + res.Title + "</h1><img src='" + res.Poster + "'/>" + "<p>" + res.Actors + "</p>" + "<p>" + res.Plot + "</p>"
+             $details.append("<h1>" + res.Title + "</h1>" + poster + "<p>" + res.Actors + "</p>" + "<p>" + res.Plot + "</p>");
            });
         })
 
