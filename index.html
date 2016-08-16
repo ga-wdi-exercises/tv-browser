@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
   <title>Movie Browser</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -12,14 +11,15 @@
 
     <form id="search">
       <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit" id="submit">
+      <input type="submit" value="Submit">
     </form>
 
     <select id="movie-select">
       <option value="">Select a movie...</option>
     </select>
+
+    <div id="movie-detail"></div>
   </div>
-  <div id="movie-detail"></div>
 
   <script src="js/jquery.js"></script>
   <script src="js/movie_browser.js"></script>

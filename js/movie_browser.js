@@ -25,7 +25,7 @@ $(document).ready(function(){
         type: "get",
         dataType: "json"
       }).done(function(response){
-        var moviePoster = response["Poster"]
+        var moviePoster = response["Poster"].Poster
         var innerHTML = "<img src=" + moviePoster + ">"
         $("#movie-detail").html(innerHTML)
       }).fail(function(){
