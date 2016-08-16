@@ -7,7 +7,7 @@ $(document).ready(function() {
 
   // movie select hidden by default
   $movieSelect.hide();
-
+  // clear search box on click
   $("#movie-search").click(function() {
     $(this).val('')
   })
@@ -37,7 +37,7 @@ $(document).ready(function() {
          dataType: "json",
          url: "http://www.omdbapi.com/?t=" + movieSelected
          }).done(function(res){
-           // if poster image url exists or is n/a
+           // logic for display if poster image url exists or is n/a
            var poster = res.Poster
            if (poster === 'N/A') {
              poster = ''
