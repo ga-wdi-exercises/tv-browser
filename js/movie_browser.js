@@ -8,48 +8,50 @@ $(document).ready(function() {
   // movie select hidden by default
   $movieSelect.hide();
 
-    $form.on("submit", function(e) {
-      e.preventDefault();
-      $details.empty();
-      // reveal movie select
-       $movieSelect.show();
-       var $keyword = $("#movie-search").val();
-       $.ajax({
-        type: "get",
-        dataType: "json",
-        url: "http://www.omdbapi.com/?s=" + $keyword
-        }).done(function(res){
-          $movieSelect.append("<option value='' disabled selected>Movies matching '" + $keyword +"'</option>")
-          for (i = 0; i < res.Search.length; i++) {
-          console.log(res.Search[i]);
-          var option = "<option value='" + res.Search[i].Title + "'>" + res.Search[i].Title + "</option>";
-          $movieSelect.append(option)
-        };
-        $movieSelect.on("change", function() {
-          $details.empty();
-          console.log(this);
-          var movieSelected = this.value;
+  $("#movie-search").click(function() {
+    $(this).val('')
+  })
 
-          $.ajax({
-           type: "get",
-           dataType: "json",
-           url: "http://www.omdbapi.com/?t=" + movieSelected
-           }).done(function(res){
-             var poster = res.Poster
-             if (poster === 'N/A') {
-               poster = ''
-             } else {
-               poster = "<img src='" + poster + "'/>"
-             }
-             var showDetails = "<h1>" + res.Title + "</h1><img src='" + res.Poster + "'/>" + "<p>" + res.Actors + "</p>" + "<p>" + res.Plot + "</p>"
-             $details.append("<h1>" + res.Title + "</h1>" + poster + "<p>" + res.Actors + "</p>" + "<p>" + res.Plot + "</p>");
-           });
-        })
+  $form.on("submit", function(e) {
+    e.preventDefault();
+    $details.empty();
+    // reveal movie select
+     $movieSelect.show();
+     var $keyword = $("#movie-search").val();
+     $.ajax({
+      type: "get",
+      dataType: "json",
+      url: "http://www.omdbapi.com/?s=" + $keyword
+      }).done(function(res){
+        $movieSelect.append("<option value='' disabled selected>Movies matching '" + $keyword +"'</option>")
+        for (i = 0; i < res.Search.length; i++) {;
+        var option = "<option value='" + res.Search[i].Title + "'>" + res.Search[i].Title + "</option>";
+        $movieSelect.append(option)
+      };
+      $movieSelect.on("change", function() {
+        $details.empty();
+        var movieSelected = this.value;
 
-        }).fail(function(res) {
-            console.log("eeep, errors!");
-        })
-        $("#movie-search").val("")
+        $.ajax({
+         type: "get",
+         dataType: "json",
+         url: "http://www.omdbapi.com/?t=" + movieSelected
+         }).done(function(res){
+           // if poster image url exists or is n/a
+           var poster = res.Poster
+           if (poster === 'N/A') {
+             poster = ''
+           } else {
+             poster = "<img src='" + poster + "'/>"
+           }
+           var showDetails = "<h1>" + res.Title + "</h1><img src='" + res.Poster + "'/>" + "<p>" + res.Actors + "</p>" + "<p>" + res.Plot + "</p>"
+           $details.append("<h1>" + res.Title + "</h1>" + poster + "<p>" + res.Actors + "</p>" + "<p>" + res.Plot + "</p>");
+         });
+      })
+
+      }).fail(function(res) {
+          console.log("eeep, errors!");
+      })
   })
 
 });
