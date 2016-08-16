@@ -16,13 +16,20 @@ $(document).ready(function(evt) {
         url: 'http://www.omdbapi.com/?s='+searchInput+'',
         type: "get",
         dataType: "json"
-      }).done(function() {
-        console.log("works");
+      }).done(function(response) {
+        for (var i = 0; i < response.Search.length; i += 1) {
+          console.log(response.Search[i].Title);
+          $("#movie-select").append('<option value="'+response.Search[i].Title+'">'+response.Search[i].Title+'</option')
+        }
+
       }).fail(function() {
 
       }).always(function() {
 
       })
+
+
+
     }
 
   })
