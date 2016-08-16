@@ -16,7 +16,7 @@ $(document).ready(function() {
     e.preventDefault();
     $details.empty();
     // reveal movie select
-     $movieSelect.show();
+     $movieSelect.empty().show();
      var $keyword = $("#movie-search").val();
      $.ajax({
       type: "get",
