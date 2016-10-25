@@ -72,7 +72,7 @@ function populateDropDown(title, results) {
     console.log(results.Search.length)
     var movie = results.Search[i];
     console.log ("movie= ",movie.Title,movie.imdbID,"index=", i);
-    var option=['<option value="', movie.imdbID, '">', movie.Title, '</option>'].join('')
+    var option = '<option value="'+ movie.imdbID+ '">' + movie.Title+ '</option>'
     console.log(option)
     optionsStr += option;
 
