@@ -11,11 +11,11 @@ $.ajax({
   dataType: "json",
 }).done((response) => {
   // $("body")
-  console.log(response)
-}).done((response) =>
-{ 
+  response.Search.forEach(movie => {
+  $("#movie-select").append(`<option>${movie.Title}</option>`)
+})
   $("#movie-select").show()
-    $("#movie-detail").append(`<div>${response.title}</div>`)
+
 })
 
 })
