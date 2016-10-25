@@ -29,7 +29,7 @@ $('#search').on('submit', function(event) {
 
   event.preventDefault();    /* prevent the screen from refreshing by default */
 
-  var $search = $('#movie-search');
+  var $search = $('#movie-search'); /* pull jquery values value out of page */
   var movieTitle = $search.val();
   findMovie(movieTitle);
 
