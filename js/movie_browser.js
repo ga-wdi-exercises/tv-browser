@@ -3,7 +3,7 @@
 const submitButton = $("#search").children().eq(1)
 
 submitButton.on("click", (event) => {
-
+$("#movie-select").css("visibility", "visible")
 const criteria = $("#movie-search").val()
 
 const apiURL = "http://www.omdbapi.com/?s=" + criteria
@@ -11,7 +11,7 @@ const apiURL = "http://www.omdbapi.com/?s=" + criteria
 
 $("#movie-select").empty()
 $("#movie-select").append("<option>Please select a movie</option>")
-console.log(apiURL)
+
 
 $.ajax({
   url: apiURL,
@@ -19,12 +19,10 @@ $.ajax({
   dataType: "json"
 
 }).done((response) =>{
-  console.log("success!", response.Search[0].Title)
 
   moviesArray = []
 
   for (i = 0; i < response.Search.length; i++) {
-      console.log(response.Search[i].Title)
        var newObject = {
          title: response.Search[i].Title,
          photo_url : response.Search[i].Poster
@@ -45,7 +43,7 @@ $("#movie-select").change(function() {
       }
     })
 }).fail((response)=>{
-  console.log("fail!", response)
+
 })
 
 event.preventDefault();
