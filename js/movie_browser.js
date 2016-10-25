@@ -1,2 +1,19 @@
-// API Docs at: 
+// API Docs at:
 // http://www.omdbapi.com
+
+$("#movie-select").hide();
+
+$("button").on("click", () => {
+  var apiUrl = "http://www.omdbapi.com/?s="
+  var userInput = $("#movie-search").val()
+  $.ajax({
+    url: apiUrl + userInput,
+    type: "GET",
+    dataType: "json"
+  }).done((response) => {
+    console.log(response)
+  }).fail(() => {
+    console.log("ajax fail");
+  })
+  $("#movie-select").show();
+})
