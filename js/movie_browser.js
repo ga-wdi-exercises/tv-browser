@@ -10,10 +10,14 @@ $("button").on("click", () => {
     url: apiUrl + userInput,
     type: "GET",
     dataType: "json"
+
   }).done((response) => {
     console.log(response)
+    $("#movie-select").show();
+    response.Search.forEach(popcorn => {
+      $("#movie-select").append(`<option>${popcorn.Title}</option>`);
+    })
   }).fail(() => {
     console.log("ajax fail");
   })
-  $("#movie-select").show();
 })
