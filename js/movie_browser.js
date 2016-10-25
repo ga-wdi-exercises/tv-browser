@@ -17,6 +17,9 @@ $("button").on("click", () => {
     response.Search.forEach(popcorn => {
       $("#movie-select").append(`<option>${popcorn.Title}</option>`);
     })
+    $("#movie-match").append(`Movie Matching...${userInput}`);
+
+
   }).fail(() => {
     console.log("ajax fail");
   })
