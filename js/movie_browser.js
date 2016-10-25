@@ -8,6 +8,34 @@ const IMDBURL = "http://www.omdbapi.com"
 const IMDBSEARCHPARM = "/?s="
 const IMDBSEARCHBYIDPARM = "/?i="
 
+
+/**************************************************************
+*  LISTENER EVENTS
+*  Whenever the user selects a title from the #movie-select
+*  the app should populate the "#movie-detail" div with that movie's
+*  title and poster image.
+*
+*************************************************************/
+
+
+$('#movie-select').hide().on('change', function() {
+  showResults(this.value);
+});
+/************************************************************************
+*  search Box form to look for movies
+*************************************************************************/
+
+$('#search').on('submit', function(event) {
+
+  event.preventDefault();    /* prevent the screen from refreshing by default */
+
+  var $search = $('#movie-search');
+  var movieTitle = $search.val();
+  findMovie(movieTitle);
+
+}); /* on Submit */
+
+
 /**************************************************************
 *
 * Search for the movie in Search Gox unhide the drop down box
@@ -15,16 +43,16 @@ const IMDBSEARCHBYIDPARM = "/?i="
 *************************************************************/
 function findMovie(movieTitle) {
 
-    $.getJSON(IMDBURL+IMDBSEARCHPARM+ movieTitle)
-    .done(function(response){
-      // We want to use both the search keyword and the imdb response in imdbDone
-      //   We use an anonymous function to pass both.
-      populateDropDown(movieTitle,response);
-    })
-    .fail(function(){
-      console.log("Ajax request fails!")
-    });
-    
+  $.getJSON(IMDBURL+IMDBSEARCHPARM+ movieTitle)
+  .done(function(response){
+    // We want to use both the search keyword and the imdb response in imdbDone
+    //   We use an anonymous function to pass both.
+    populateDropDown(movieTitle,response);
+  })
+  .fail(function(){
+    console.log("Ajax request fails!")
+  });
+
 } /* Function findMovie */
 
 /**************************************************************
@@ -50,4 +78,31 @@ function populateDropDown(title, results) {
   } /* i */
 
   $('#movie-select').show().html(optionsStr);
+} /* populateDropDown */
+
+
+
+/******************************************************************
+* Function showResults
+* format detail results from movie search into title and picture
+*
+********************************************************************/
+
+function showResults(movieId) {
+
+  /* check if movie exists */
+  if (!movieId) return;
+
+  let resultlsUrl=IMDBURL+IMDBSEARCHBYIDPARM +movieId;
+
+  $.getJSON(resultlsUrl)
+  .done (function(response) {
+    let detail = '<p>' + response.Title + '</p>';
+    detail += '<img src="'+ response.Poster +'" alt="'+ response.Title +'">';
+    /* set the value in Movie Detail */
+    $('#movie-detail').html(detail);
+  })
+  .fail(function(){
+    console.log("Ajax request fails!")
+  });
 }
