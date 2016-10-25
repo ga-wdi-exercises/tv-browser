@@ -25,8 +25,9 @@ $('#movie-select').hide().on('change', function() {
 *  search Box form to look for movies
 *************************************************************************/
 
+// $('#search').on('submit', function(event) {
 $('#search').on('submit', function(event) {
-
+ console.log('submit')
   event.preventDefault();    /* prevent the screen from refreshing by default */
 
   var $search = $('#movie-search'); /* pull jquery values value out of page */
@@ -37,7 +38,7 @@ $('#search').on('submit', function(event) {
 
 
 /**************************************************************
-*
+* Function FindMovie
 * Search for the movie in Search Gox unhide the drop down box
 *
 *************************************************************/
