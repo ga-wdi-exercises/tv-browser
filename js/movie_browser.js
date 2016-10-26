@@ -11,8 +11,9 @@
     }).done(function(response){
       let movies = response.Search
       movies.forEach(function(movie){
-        console.log(movie);
-        $('body').append(`<div>${movie.Title}</div>`)
+        console.log(`${movie.Title}`);
+        $('#movie-select').show();
+        $('#movie-select').append( $("<option>").val("value").html(`${movie.Title}`));
       })
     })
   })
