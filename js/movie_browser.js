@@ -12,10 +12,13 @@ $.ajax({
 }).done((response) => {
   // $("body")
   response.Search.forEach(movie => {
-  $("#movie-select").append(`<option>${movie.Title}</option>`)
+  $("#movie-select").append(`<option value="${movie.imdbID}">${movie.Title}</option>`)
 })
   $("#movie-select").show()
 
+  $("#movie-select").change("click", (movie) => {
+      debugger;
+    $("#movie-detail").append(`<div "${movie.imdbID}">${movie.Title}</div>`)
+  })
 })
-
 })
