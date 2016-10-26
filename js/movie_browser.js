@@ -17,3 +17,6 @@
       })
     })
   })
+  $("#movie-select").on("change", function(){
+    console.log("this is where i left off liza!");
+  })
