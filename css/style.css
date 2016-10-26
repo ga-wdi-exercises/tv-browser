@@ -20,7 +20,3 @@ input[type="search"],
 select {
   width: 200px;
 }
-
-.hidden {
-  display: none;
-}
