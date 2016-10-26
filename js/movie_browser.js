@@ -10,7 +10,6 @@ $.ajax({
   type: "GET",
   dataType: "json",
 }).done((response) => {
-  // $("body")
   response.Search.forEach(movie => {
   $("#movie-select").append(`<option value="${movie.imdbID}">${movie.Title}</option>`)
 })
