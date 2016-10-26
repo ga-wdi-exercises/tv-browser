@@ -14,13 +14,22 @@ $("button").on("click", () => {
   }).done((response) => {
     console.log(response)
     $("#movie-select").show();
+
     response.Search.forEach(popcorn => {
-      $("#movie-select").append(`<option>${popcorn.Title}</option>`);
+    $("#movie-select").append(`<option value="${popcorn.imdbID}">${popcorn.Title}</option>`);
     })
-    $("#movie-match").append(`Movie Matching...${userInput}`);
 
+    $("#movie-match").append(`Movies Matching... "${userInput}"`);
 
-  }).fail(() => {
-    console.log("ajax fail");
+    $("#movie-select").change("click", (popcorn) => {
+    var displayUrl = "http://www.omdbapi.com/?i="
+    $.ajax({
+      url: displayUrl,
+      type: "GET",
+      dataType: "json"
+    }).done((response) => {
+      $("#movie-detail").append(displayUrl + popcorn.imdbID)
+    })
   })
+})
 })
