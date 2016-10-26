@@ -1,9 +1,6 @@
 // API Docs at:
 // http://www.omdbapi.com
 $('#movie-select').hide()
-// $('.submit').on('click', function(){
-//   $('#movie-select').show()
-// })
 $('.submit').on('click', () => {
   $('#movie-select').empty()
   var url = "http://www.omdbapi.com/?s="
@@ -33,9 +30,9 @@ $('#movie-select').on('change',function(){
     dataType: "json",
   }).done((response) =>{
     $('#movie-detail').append(response.Title);
-    var x = response.Poster
-    console.log(x)
-    $('#movie-detail').append('<img src="${response.Poster}">');
+    // var x = response.Poster
+    // console.log(x)
+    $('#movie-detail').append(`<img src="${response.Poster}">`);
 
 
   }).fail(() => {
@@ -50,3 +47,47 @@ $('#movie-select').on('change',function(){
 //   console.log(finalurl)
 // })
 })
+
+
+
+
+
+
+// angular
+// .module("mb", [
+//   "ui.router"
+// ])
+// .config([
+//   "$stateProvider",
+//   Router
+// ])
+// .controller("IndexController",[
+//   IndexController
+// ])
+//
+// function IndexController(){
+//   this.search = function(){
+//     console.log(this.searchTerm)
+//     $.getJSON(`http://www.omdbapi.com/?s=${this.searchTerm}`, response => {
+//       console.log(response)
+//       this.movies = response.Search
+//     })
+//   }
+// }
+//
+// function Router($stateProvider){
+//   $stateProvider
+//   .state("index",{
+//     url:'/',
+//     controller: 'IndexController',
+//     controllerAs: 'vm',
+//     templateUrl: 'js/ng-views/index.html'
+//   })
+// }
+
+// bootstrap the app
+// set up a router
+// set up a controller
+// some template html
+// ng-submit on the form
+// request list of movies from api
