@@ -17,7 +17,6 @@ $.ajax({
   $("#movie-select").show()
 
   $("#movie-select").change("click", (movie) => {
-      debugger;
     $("#movie-detail").append(`<div "${movie.imdbID}">${movie.Title}</div>`)
   })
 })
