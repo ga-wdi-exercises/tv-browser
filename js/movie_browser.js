@@ -9,11 +9,13 @@ $(search).children().eq(1).on('click', function(e) {
   let title = $('#movie-search').val()
   let apiUrl = `http://www.omdbapi.com/?s=${title}`
   $.getJSON(apiUrl, response => {
-    populateMovieSelect(response.Search)
+    $('#movie-select').html('')
+    populateMovieSelect(response.Search, title)
   })
 })
 
-var populateMovieSelect = function(arr) {
+var populateMovieSelect = function(arr, title) {
+  $('#movie-select').append(`<option>Movies matching ${title}...`)
   for (i = 0; i < arr.length; i++) {
     $('#movie-select').append(`<option value="${arr[i].Title}">${arr[i].Title}</option>`)
   }
