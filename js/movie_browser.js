@@ -63,23 +63,26 @@ function findMovie(movieTitle) {
 *************************************************************/
 
 function populateDropDown(title, results) {
+
   var optionsStr = '<option value="">Found "'+ title +'"...</option>';
 
   for (var i=0; i < results.Search.length; i++) {
 
     /* build option value strings */
-
-    console.log(results.Search.length)
     var movie = results.Search[i];
-    console.log ("movie= ",movie.Title,movie.imdbID,"index=", i);
-    var option = '<option value="'+ movie.imdbID+ '">' + movie.Title+ '</option>'
-    console.log(option)
-    optionsStr += option;
+    /* join all the pieces of the string together for this movie choice */
+    option=[]
+    option.push('<option value="')
+    option.push(movie.imdbID)
+    option.push('">' )
+    option.push( movie.Title)
+    option.push('</option>')
+    optionsStr += option.join('');
 
   } /* i */
 
   $('#movie-select').show().html(optionsStr);
-} /* populateDropDown */
+} /* function populateDropDown */
 
 
 
@@ -98,12 +101,54 @@ function showResults(movieId) {
 
   $.getJSON(resultlsUrl)
   .done (function(response) {
-    let detail = '<p>' + response.Title + '</p>';
-    detail += '<img src="'+ response.Poster +'" alt="'+ response.Title +'">';
+
+    /* pull out all the  results and format into HTML for Detail Jquery response
+   {"Title":"Game of Thrones",
+    "Year":"2011–",
+   "Rated":"TV-MA",
+   "Released":"17 Apr 2011",
+   "Runtime":"56 min",
+   "Genre":"Adventure, Drama, Fantasy",
+   "Director":"N/A",
+   "Writer":"David Benioff, D.B. Weiss",
+   "Actors":"Peter Dinklage, Lena Headey, Emilia Clarke, Kit Harington",
+   "Plot":"While a civil war brews between several noble families in Westeros, the children of the former rulers of the land attempt to rise to power.",
+   "Language":"English",
+   "Country":"USA, UK",
+   "Awards":"Won 1 Golden Globe. Another 206 wins & 339 nominations.",
+   "Poster":"https://images-na.ssl-images-amazon.com/images/M/MV5BMjM5OTQ1MTY5Nl5BMl5BanBnXkFtZTgwMjM3NzMxODE@._V1_SX300.jpg","Metascore":"N/A","imdbRating":"9.5",
+   "imdbVotes":"1,064,264",
+   "imdbID":"tt0944947",
+   "Type":"series",
+   "totalSeasons":"8",
+   "Response":"True"} */
+
+    /* for our repsonse we will take title, actors, Rating Plot and Poster */
+    let detail=[]
+    detail.push('<div>')
+    detail.push('<p>')
+    detail.push(response.Title)
+    detail.push(' Rated:')
+    detail.push(response.Rated)
+    detail.push('</p>')
+    detail.push('<p>')
+    detail.push('Starring: ')
+    detail.push(response.Actors)
+    detail.push('</p>')
+    detail.push('<p>')
+    detail.push(response.Plot)
+    detail.push('</p>')
+    detail.push('<img src="')
+    detail.push(response.Poster)
+    detail.push('" alt="')
+    detail.push(response.Title)
+    detail.push('">')
+    detail.push('</div>')
+
     /* set the value in Movie Detail */
-    $('#movie-detail').html(detail);
+    $('#movie-detail').html(detail.join(''));
   })
   .fail(function(){
     console.log("Ajax request fails!")
   });
-}
+} /* function showResults */
