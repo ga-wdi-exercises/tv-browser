@@ -33,8 +33,6 @@ $('#movie-select').on('change',function(){
     // var x = response.Poster
     // console.log(x)
     $('#movie-detail').append(`<img src="${response.Poster}">`);
-
-
   }).fail(() => {
     console.log("Failed")
   })
