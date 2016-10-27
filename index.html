@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html ng-app>
 <head>
   <title>Movie Browser</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 </head>
 <body>
   
@@ -11,10 +12,10 @@
 
     <form id="search">
       <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
+      <input type="submit" value="Submit" ng-click="showme=true">
     </form>
     
-    <select id="movie-select">
+    <select id="movie-select" ng-show="showme">
       <option value="">Select a movie...</option>
     </select>
 
