@@ -20,3 +20,19 @@ $(".submit").on("click", function(event){
     })
     $('select').show()
   });
+
+$("#movie-select").on("change", function () {
+  let search = $("select").val()
+  $.ajax({
+    type: 'GET',
+    dataType: 'json',
+    url: `http://www.omdbapi.com/?i=${search}`
+  }).done((response) => {
+    $('#movie-detail').html('')
+    $('#movie-detail').append(
+      `<h3>${response.Title}</h3><img src="${response.Poster}">`
+    )
+  }).fail((response) => {
+    console.log(response)
+  })
+})
