@@ -14,5 +14,3 @@ Use the [Open Movie Database API](http://www.omdbapi.com/) to build a single-pag
  3. Whenever the user selects a title from the `#movie-select` field (HINT: listen for a `"change"` event), the app should populate the `"#movie-detail"` div with that movie's title and poster image.
 
 ## Take a look:
-
-http://ga-wdi-exercises.github.io/movie-browser/ 
