@@ -1,25 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="mb">
 <head>
   <title>Movie Browser</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  
+
   <div class="browse">
     <h1>Movie Browser</h1>
-
-    <form id="search">
-      <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
-    </form>
-    
-    <select id="movie-select">
-      <option value="">Select a movie...</option>
-    </select>
-
-    <div id="movie-detail"></div>
-  </div>
 
   <script src="js/jquery.js"></script>
   <script src="js/movie_browser.js"></script>
