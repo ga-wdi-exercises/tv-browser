@@ -1,34 +1,42 @@
+document.getElementById("movie-select").style.visibility = "hidden";
 
-angular
-  .module("mb", [
-"ui.router"
-])
-.config([
-    "$stateProvider",
-    Router
-])
-.controller("IndexController", [
-  IndexController
-])
-function IndexController(){
-    this.search = function(){
-      console.log(this.searchTerm)
-      $.getJSON('http://www.omdbapi.com/?s=${this.searchTerm}', response => {
-          vm.movies = response.Search
-      })
-    }
+var xhr = new XMLHttpRequest();
+xhr.open("GET", "https://www.omdbapi.com/", false);
 
-}
 
-function Router($stateProvider){
-  $stateProvider
-    .state("index", {
-      url: "/",
-      controller: 'IndexController',
-      controllerAs: 'vm',
-      templateUrl: 'js/ng-views/index.html'
-    })
-}
+
+
+
+// angular
+//   .module("mb", [
+// "ui.router"
+// ])
+// .config([
+//     "$stateProvider",
+//     Router
+// ])
+// .controller("IndexController", [
+//   IndexController
+// ])
+// function IndexController(){
+//     this.search = function(){
+//       console.log(this.searchTerm)
+//       $.getJSON('http://www.omdbapi.com/?s=${this.searchTerm}', response => {
+//           vm.movies = response.Search
+//       })
+//     }
+//
+// }
+//
+// function Router($stateProvider){
+//   $stateProvider
+//     .state("index", {
+//       url: "/",
+//       controller: 'IndexController',
+//       controllerAs: 'vm',
+//       templateUrl: 'js/ng-views/index.html'
+//     })
+// }
 // API Docs at:
 // http://www.omdbapi.com
 //this event hides the movie-select
