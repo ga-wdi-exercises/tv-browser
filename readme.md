@@ -16,5 +16,3 @@ Use the [Open Movie Database API](http://www.omdbapi.com/) to build a single-pag
  > **Note**: you should not need to use a separate API or use a separate API call.
 
 ## Take a look:
-
-http://ga-wdi-exercises.github.io/movie-browser/ 
