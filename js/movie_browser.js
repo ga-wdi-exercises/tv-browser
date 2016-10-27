@@ -1,16 +1,23 @@
 // API Docs at:
 // http://www.omdbapi.com
 
-$('submit').on('click', () => {
-  const url = "http://img.omdbapi.com/?i=tt2294629&apikey=286bb3d8";
-
+$('#movie-select').hide()
+// $('.submit').on('click', function(){
+//   $('#movie-select').show()
+// })
+$('.submit').on('click', () => {
+  $('#movie-select').empty()
+  var url = "http://www.omdbapi.com/?s="
+  var keyword = $('#movie-search').val()
   $.ajax({
-    url: url,
-    type: "get",
-    dataType: "json"
+    url: url + keyword,
+    type: "GET",
+    dataType: "json",
+  }).done(response =>{
+    $('#movie-select').append(`<option>Movies matching "${keyword}"</option>`)
+response.Search.forEach(movie => {
+  console.log(movie)
+  $('#movie-select').append(`<option value="${movie.imdbID}">${movie.Title}</option>`)
 
-}).done((response) => {
-  console.log(response);
-}).fail(() => {
-  console.log("Sorry, we had issues retrieving movie data!")
+})
 })
