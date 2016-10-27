@@ -1,9 +1,6 @@
 // API Docs at:
 // http://www.omdbapi.com
-
-
-
-const queryUrl = $("")
+const queryUrl = $(``)
 
 $.ajax({
   url: queryUrl,
