@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movie Browser</title>
-  <link rel="stylesheet" href="css/style.css">
+    <title>Movie Browser</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  
-  <div class="browse">
-    <h1>Movie Browser</h1>
+    <div class="browse">
+        <h1>Movie Browser</h1>
 
     <form id="search">
       <input type="search" placeholder="Search for a title..." id="movie-search">
       <input type="submit" value="Submit">
     </form>
-    
-    <select id="movie-select">
+
+    <select hidden id="movie-select">
       <option value="">Select a movie...</option>
     </select>
 
-    <div id="movie-detail"></div>
-  </div>
+    <div id="movie-detail">
+
+    </div>
+</div>
 
   <script src="js/jquery.js"></script>
-  <script src="js/movie_browser.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/movieModel.js" charset="utf-8"></script>
+  <script src="js/movieView.js" charset="utf-8"></script>
 </body>
 </html>
+
+<img src="" alt="" />
