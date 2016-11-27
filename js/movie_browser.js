@@ -19,7 +19,18 @@ $("#submitbutton").on("click", () => {
       $("#movie-select").append('<option>'+movie.Title+'</option>')
     })
     ///
-  
+    $("#movie-select").on("change", () => {
+      let selectedMovie = $("#movie-select").val()
+      console.log(selectedMovie);
+      for (i=0; i < response.Search.length; i++) {
+        if (response.Search[i]["Title"] == selectedMovie) {
+          $("#movie-detail").empty().append(
+            '<h2>'+response.Search[i]["Title"]+'</h2><img src="'+response.Search[i]["Poster"]+'" />'
+          );
+        }
+      }
+    ///
+    })
   })
 
 })
