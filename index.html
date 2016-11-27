@@ -2,8 +2,6 @@
 <html>
 <head>
   <title>Movie Browser</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-  <script src="js/movie_browser.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,15 +11,17 @@
 
     <form id="search">
       <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
+      <input type="button" id="submitbutton" value="Submit">
     </form>
 
     <select id="movie-select">
-      <option value="">Select a movie...</option>
+      <option value="">-</option>
     </select>
 
     <div id="movie-detail"></div>
   </div>
 
+  <script src="js/jquery.js"></script>
+  <script src="js/movie_browser.js"></script>
 </body>
 </html>

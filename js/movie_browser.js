@@ -1,34 +1,25 @@
-/*jshint esversion: 6 */
+// API Docs at:
+// http://www.omdbapi.com
 
-$(document).ready(function() {
-    //console.log( "ready!" );
+$("#submitbutton").on("click", () => {
 
-    $('#search').on('submit', function(pd) {
-        pd.preventDefault();
-        // console.log(this);
-        var keyword = $('#movie-search').val();
-        findAll(keyword);
-    });
+  $("#movie-select").css("display", "inline-block");
 
+  let keyword = $("#movie-search").val();
+  $("#movie-select").empty().append('<option>Movies matching "'+keyword+'"</option>');
 
-    function findAll(keyword) {
-        var url = 'http://www.omdbapi.com/?s=' + keyword;
-        $.ajax({
-            url: url,
-            type: "get",
-            dataType: "json"
-                // $.ajax takes an object as an argument with at least three key-value pairs...
-                // (1) The URL endpoint for the JSON object.
-                // (2) Type of HTTP request.
-                // (3) Datatype. Usually JSON.
-        }).done(() => {
-            console.log("Ajax request success!");
-        }).fail(() => {
-            console.log("Ajax request fails!");
-        }).always(() => {
-            console.log("This always happens regardless of successful ajax request or not.");
-        });
-    }
+  let url = "http://www.omdbapi.com/?s=" + keyword;
+  $.ajax({
+    dataType: 'json',
+    type: 'get',
+    url: url
+  }).done((response) => {
+        ///
+    response.Search.forEach(function(movie){
+      $("#movie-select").append('<option>'+movie.Title+'</option>')
+    })
+    ///
+  
+  })
 
-
-});
+})
