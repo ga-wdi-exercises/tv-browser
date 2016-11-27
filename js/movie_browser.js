@@ -24,7 +24,6 @@ $("#submitbutton").on("click", () => {
     ///
     $("#movie-select").on("change", () => {
       let selectedMovie = $("#movie-select").val()
-      console.log(selectedMovie);
       for (i=0; i < movieSelections.length; i++) {
         if (movieSelections[i] == selectedMovie) {
           $("#movie-detail").empty().append(
