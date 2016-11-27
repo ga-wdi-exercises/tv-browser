@@ -14,18 +14,21 @@ $("#submitbutton").on("click", () => {
     type: 'get',
     url: ajaxUrl
   }).done((response) => {
+    ///
+    let movieSelections = [];
         ///
     response.Search.forEach(function(movie){
-      $("#movie-select").append('<option>'+movie.Title+'</option>')
+      $("#movie-select").append('<option>'+movie.Title+' ('+movie.Year+')</option>')
+      movieSelections.push(movie.Title + " (" + movie.Year + ")")
     })
     ///
     $("#movie-select").on("change", () => {
       let selectedMovie = $("#movie-select").val()
       console.log(selectedMovie);
-      for (i=0; i < response.Search.length; i++) {
-        if (response.Search[i]["Title"] == selectedMovie) {
+      for (i=0; i < movieSelections.length; i++) {
+        if (movieSelections[i] == selectedMovie) {
           $("#movie-detail").empty().append(
-            '<h2>'+response.Search[i]["Title"]+'</h2><img src="'+response.Search[i]["Poster"]+'" />'
+            '<h2>'+movieSelections[i]+'</h2><img src="'+response.Search[i]["Poster"]+'" />'
           );
         }
       }
