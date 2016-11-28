@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="Movie">
 <head>
   <title>Movie Browser</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+  <script src="js/movie_browser.js"></script>
 </head>
 <body>
-  
+
   <div class="browse">
     <h1>Movie Browser</h1>
 
@@ -13,7 +15,7 @@
       <input type="search" placeholder="Search for a title..." id="movie-search">
       <input type="submit" value="Submit">
     </form>
-    
+
     <select id="movie-select">
       <option value="">Select a movie...</option>
     </select>
