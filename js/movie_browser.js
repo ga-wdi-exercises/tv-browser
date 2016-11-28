@@ -1,14 +1,13 @@
 // API Docs at:
 // http://www.omdbapi.com
 
-angular.module("movieBrowser", [])
-    .config(["$stateProvider", RouterFunction])
-    .controller('MovieIndexController', [MovieIndexControllerFunction])
-
-
-function MovieIndexControllerFunction(){
-
-};
+// angular.module("movieBrowser", [])
+//     .config(["$stateProvider", RouterFunction])
+//     .controller('MovieIndexController', [MovieIndexControllerFunction])
+//
+// function MovieIndexControllerFunction(){
+//
+// };
 
 $("#movie-select").hide();
 
@@ -19,18 +18,24 @@ $("#movie-select").hide();
     $("#movie-select").show();
 
 
-    let title = $('#movie-search').val()
-    let url= `http://www.omdbapi.com/?s=${title}&y=&plot=short&r=json`
+    let query = $('#movie-search').val()
+    let url= `http://www.omdbapi.com/?s=${query}&y=&plot=short&r=json`
     $.ajax({
       url,
       type: "get", // making a get request
       dataType: "json"
     }).done((response) => {
-      $("#movie-select").append(`<option>movies matching "${title}"</option>`)
+      let movies = [];
+      $("#movie-select").append(`<option>movies matching "${query}"</option>`)
       response.Search.forEach(function(movie){
-      console.log(movie.Title)
-      let option = $(`<option value="${movie.Title}">${movie.Title}</option>`)
-      $("#movie-select").append(option)})
+      let option = $(`<option value="${movie}">${movie.Title}</option>`)
+      $("#movie-select").append(option)
+      movies.push(movie)})
+      console.log(movies)
+      $("#movie-select").on("change", function(){
+        let selected = $("#movie-select").val()
+          console.log(selected.Title)
+      })
     }).fail(() => {
       console.log("ajx fails...")
     }).always(() => {
@@ -40,11 +45,12 @@ $("#movie-select").hide();
   });
 
 
-  function RouterFunction($stateProvider){
-    $stateProvider
-    .state("movieIndex", {
-      url: "/",
-      controller: "MovieIndexController",
-      controllerAs: "vm"
-    })
-  }
+
+  // function RouterFunction($stateProvider){
+  //   $stateProvider
+  //   .state("movieIndex", {
+  //     url: "/",
+  //     controller: "MovieIndexController",
+  //     controllerAs: "vm"
+  //   })
+  // }
