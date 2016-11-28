@@ -12,6 +12,10 @@ h1 {
   margin: 0;
 }
 
+#movie-select {
+  display: none;
+}
+
 a {
   color: #c00;
 }
