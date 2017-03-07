@@ -3,7 +3,7 @@
 $(document).ready(() => {
 
   $("#movie-select").hide().on('change', function(){
-    show(this.value);
+
   });
 
   $(".submit").on("click", () => {
@@ -27,4 +27,5 @@ $(document).ready(() => {
     })
     $("#movie-select").show().html()
   })
+
 })
