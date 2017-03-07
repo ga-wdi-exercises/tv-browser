@@ -1,32 +1,35 @@
 angular
-.module("mb",[
-  "ui.router"
-])
-.config([
-  "$stateProvider",
-  Router
-])
-.controller("IndexController",[
-  IndexController
-])
+  .module("mb",[
+    "ui.router",
+    "ngResource"
+  ])
+  .config([
+    "$stateProvider",
+    "$locationProvider",
+    RouterFunc
+  ])
+  .controller("IndexController", [
+    "Hollyw00d",
+    IndexController
+  ])
+  .factory("Hollyw00d", [
+    "$resource",
+    Hollyw00dFactoryCallback
+  ])
 
-function IndexController(){
-  var vm = this
-  vm.searchTerm = "up"
-  vm.search = function(){
-    this.$apply(function(){
-
-
-    $.getJSON(`http://www.omdbapi.com/?s=${vm.searchTerm}`,function(response){
-      console.log("finished searchin")
-      vm.movies = response.Search
-      console.log(vm)
-    })
-      })
+function IndexController(Hollyw00d){
+  this.searchTerm = "up"
+  this.search = function(){
+    Hollyw00d.get({searchTerm:this.searchTerm}).$promise.then( (res) => this.movies = res.Search );
   }
 }
 
-function Router($stateProvider){
+function Hollyw00dFactoryCallback($resource){
+  return $resource("http://www.omdbapi.com/?s=:searchTerm");
+}
+
+function RouterFunc($stateProvider, $locationProvider){
+  $locationProvider.html5Mode(true);
   $stateProvider
   .state("index",{
     url: '/',
@@ -35,18 +38,3 @@ function Router($stateProvider){
     templateUrl: 'js/ng-views/index.html'
   })
 }
-
-// API Docs at:
-// http://www.omdbapi.com
-
-// bootstrap the app
-
-// set up a router
-
-// set up a controller
-
-// some template html
-
-// ng-submit on the form
-
-// request list of movies from api

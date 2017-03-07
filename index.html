@@ -2,21 +2,19 @@
 <html ng-app="mb">
 <head>
   <title>Movie Browser</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>s
+  <base href="/">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <div class="browse">
+  <main class="browse">
     <h1>Movie Browser</h1>
-    <div ui-view>
+    <div ui-view></div>
+  </main>
 
-    </div>
-
-  </div>
-
-  <script src="js/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.5.2/angular-resource.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
   <script src="js/movie_browser.js"></script>
 </body>
 </html>
