@@ -13,10 +13,9 @@ $("input[type='submit']").on("click", function(keyword){
     dataType: "json"
   }).done((response) => {
     movieDone(keyword, response);
-  }).fail(() => {
-    console.log("Ajax failed")
   })
-});
+
+})
 
 function movieDone(searchKeyword, searchData){
   var display = '<option value="">Movies matching "'+ searchKeyword +'"...</option>';
@@ -27,7 +26,11 @@ function movieDone(searchKeyword, searchData){
   }
 
   $('#movie-select').show().html(display);
-}
+
+    var detail = '<h2>' + movie.Title + '</h2>';
+    detail += '<img src="'+ movie.Poster +'" alt="'+ movie.Title +'">';
+    $('#movie-detail').html(detail);
+  };
 
 $('#search').on('submit', function(evt) {
   evt.preventDefault();
@@ -37,3 +40,9 @@ $('#search').on('submit', function(evt) {
 
   search(keyword);
 });
+
+function show(imdbId) {
+  if (!imdbId) return;
+
+  var url = 'http://www.omdbapi.com/?i='+imdbId;
+}
