@@ -5,10 +5,10 @@ $(document).ready(function() {
         var url = `http://www.omdbapi.com/?s=${movieName}`
 
         $.getJSON(url)
-            .done(function(imdbResponse) {
+            .done((imdbResponse) => {
                 imdbDone(movieName, imdbResponse)
             })
-            .fail(function(imdbResponse, textStatus, errorMessage) {
+            .fail((imdbResponse, textStatus, errorMessage) => {
                 let message = 'Sorry we could not find data for "' + movieName + '""'
                 if (errorMessage) {
                     message += "(" + errorMessage + ")"
@@ -32,14 +32,14 @@ $(document).ready(function() {
         if (!imdbId) return
         let url = 'http://www.omdbapi.com/?i=' + imdbId
 
-        $.getJSON(url).then(function(imdbMovieData) {
+        $.getJSON(url).then((imdbMovieData) => {
             let detail = '<h2>' + imdbMovieData.Title + '</h2>'
             detail += '<img src="' + imdbMovieData.Poster + '" alt="' + imdbMovieData.Title + '">'
             $('#movie-detail').html(detail)
         })
     }
 
-    $('#search').on('submit', function(evt) {
+    $('#search').on('submit',(evt) => {
         evt.preventDefault()
         let $search = $('#movie-search')
         let movieName = $search.val()
