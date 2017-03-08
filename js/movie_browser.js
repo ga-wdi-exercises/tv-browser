@@ -20,7 +20,7 @@ $(document).ready(() => {
           $("#movie-select").append(`<option> Movies matching "${search}"...</option>`)
           // runs through every result from the api search
           for (var i=0; i < response.Search.length; i++) {
-              $("#movie-select").append(`<option data-value=${response.Search[i].Poster}}>${response.Search[i].Title}</option>`)
+              $("#movie-select").append(`<option data-value=${response.Search[i].Poster}>${response.Search[i].Title}</option>`)
           }
           $("#movie-select").change(function(){
               // add title of selected movie
