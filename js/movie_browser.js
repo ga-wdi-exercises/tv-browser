@@ -22,3 +22,17 @@ $("#search").submit((event) => {
     console.log("API FAILED");
   })
 })
+
+$('#movie-select').change(() => {
+
+})
+
+$("#movie-select").change(() => {
+
+  let val = $("#movie-select option:selected").val();
+  let title = `<h2>${responses[val].Title}</h2>`;
+  let year = `<h4>${responses[val].Year}</h4>`;
+  let posterUrl = `<img src="${responses[val].Poster}">`;
+
+  $("#movie-detail").html(title + year + posterUrl);
+})
