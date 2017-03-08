@@ -6,6 +6,8 @@ $(document).ready(() => {
 
   });
 
+
+
   $(".submit").on("click", () => {
     event.preventDefault();
 
@@ -21,11 +23,13 @@ $(document).ready(() => {
       $("select").html('')
       movies.forEach((movie) => {
         $("#movie-select").append(`<option value="${movie.imdbID}">${movie.Title}</option>`)
+        // $("#movie-detail").change(() => {
+        //   let optionSelected = $("option:selected", this);
+        // }).html(`<h2>${optionSelected.Title}</h2>`)
       })
     }).fail((response) => {
       console.log("Ajax failed");
     })
-    $("#movie-select").show().html()
+  $("#movie-select").show().html()
   })
-
 })
