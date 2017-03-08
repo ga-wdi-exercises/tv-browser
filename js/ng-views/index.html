@@ -1,11 +1,19 @@
 
   <form id="search" ng-submit="vm.search()">
-    <input type="search" placeholder="Search for a title..." id="movie-search">
+    <input type="search" ng-model="vm.searchTerm" placeholder="Search for a title..." id="movie-search">
     <input type="submit" value="Submit">
   </form>
 
   <select id="movie-select">
     <option value="">Select a movie...</option>
+    <option ng-repeat="movie in vm.movies">{{movie.Title}}</option>
   </select>
 
-  <div id="movie-detail"></div>
+  <!-- <div id="movie-detail"></div> -->
+  <div ng-repeat="movie in vm.movies">
+    <p>Title: {{movie.Title}}</p>
+    <p>Year: {{movie.Year}}</p>
+    <p>Actors: {{movie.Actors}}</p>
+    <p>Plot: {{movie.Plot}}</p>
+    <img src="{{movie.Poster}}">
+  </div>
