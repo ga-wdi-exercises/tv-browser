@@ -27,6 +27,6 @@ select {
 #movie_detail{
   display: none;
   height: 600px;
-  width: 300pc;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.3);
 }
