@@ -1,2 +1,32 @@
-// API Docs at: 
+// API Docs at:
 // http://www.omdbapi.com
+$(document).ready(() => {
+  $("#movie-select").hide();
+
+  $(".submit").on("click", () => {
+    event.preventDefault()
+    let search = $("#movie-search").val()
+    let url = `http://www.omdbapi.com/?s=${search}`
+    $("#movie-select").show();
+    $("#movie-select").empty();
+
+    $.ajax({
+      url: url,
+      type: "get",
+      dataType: "json"
+    }).done((response) => {
+      console.log("Search request success!")
+      moviesList = []
+
+      for (var i=0; i < response.Search.length; i++) {
+        console.log(response.Search[i].Title)
+      }
+      // $("#movie-select").append(`<option value="${}"></option>`)
+    }).fail(() => {
+      console.log("Search request fails!")
+    })
+
+  })
+
+
+})
