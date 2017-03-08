@@ -12,7 +12,7 @@ angular
   ])
   .factory( "MovieBrowserFactory", [
     "$resource",
-    MovieBrowserFactoryFunction
+    MovieBrowserFactoryCallback
   ])
   .controller("MovieBrowserIndexController", [
     "MovieBrowserFactory",
@@ -30,10 +30,12 @@ function RouterFunction($locationProvider, $stateProvider){
   })
 }
 
-function MovieBrowserFactoryFunction($resource){
-  return $resource( "http://www.omdbapi.com/?s=:searchTerm" );
+function MovieBrowserFactoryCallback($resource){
+  return $resource("http://www.omdbapi.com/?s=:searchTerm");
 }
 
-function MovieBrowserIndexControllerFunction( MovieBrowserFactory){
-  this.movies = MovieBrowserFactory.query();
+function MovieBrowserIndexControllerFunction(MovieBrowserFactory){
+  this.search = function(){
+    MovieBrowserFactory.get({searchTerm:this.searchTerm}).$promise.then( (resource) => this.movies = resource.Search );
+  }
 }
