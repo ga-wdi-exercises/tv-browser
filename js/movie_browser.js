@@ -1,27 +1,30 @@
-                      // ##############################################
-                      // 201703081616L   EL MIERCOLES   JAY
-                          // API Docs at:
-                          // http://www.omdbapi.com
-                          // http://www.omdbapi.com/?s=Rogue
-                          // http://api.jquery.com/jquery.getjson/
-                          // http://stackoverflow.com/questions/16607557/javascript-perform-join-on-value-in-object-array
-                          // file:///Users/justingiron/Dropbox/3/x/wdi/homework/201703090900L_angular/movie-browser/index.html?
+              // ##############################################
+              // 201703081616L   EL MIERCOLES   JAY
+                  // API Docs at:
+                  // http://www.omdbapi.com
+                  // http://www.omdbapi.com/?s=Rogue
+                  // http://api.jquery.com/jquery.getjson/
+                  // http://stackoverflow.com/questions/16607557/javascript-perform-join-on-value-in-object-array
+                  // file:///Users/justingiron/Dropbox/3/x/wdi/homework/201703090900L_angular/movie-browser/index.html?
 
-                          // I HAD TO REALLY WORK TO GET MY HEAD AROUND THIS ONE.
-                          // MIKE N AND I EXAMINED THE SOLUTION CODE AND THEN BUILT
-                          // OUR OWNS, BORROWING HEAVILY FROM THE SOLUTION CODE.
-                          // ONE THING SEEMED ODD, THAT WAS THE CODE TO HIDE THE results
-                          // FIELD WAS AT THE END OF THE SCRIPT.  I MOVED IT TO THE BEGINNING
-                          // SO IT WOULD WORK IMMED YOU OPENED THE PAGE.
-                          // ONE THING I DONT UNDERSTAND IS WHERE THE VALUE FOR field
-                          // imdbSearchData
-                          // COMES FROM.  I SEE IT BEING CALLED BUT NOT BEING POPULATED.
-                          // SAME WITH field
-                          // imdbMovieData
-                          // I APPEAR TO HAVE MADE ZERO USE OF MY file
-                          // style.css
+                  // I HAD TO REALLY WORK TO GET MY HEAD AROUND THIS ONE.
+                  // MIKE N AND I EXAMINED THE SOLUTION CODE AND THEN BUILT
+                  // OUR OWNS, BORROWING HEAVILY FROM THE SOLUTION CODE.
+                  // ONE THING SEEMED ODD, THAT WAS THE CODE TO HIDE THE results
+                  // FIELD WAS AT THE END OF THE SCRIPT.  I MOVED IT TO THE BEGINNING
+                  // SO IT WOULD WORK IMMED YOU OPENED THE PAGE.
+                  // ONE THING I DONT UNDERSTAND IS WHERE THE VALUE FOR field
+                  // imdbSearchData
+                  // COMES FROM.  I SEE IT BEING CALLED BUT NOT BEING POPULATED.
+                  // SAME WITH field
+                  // imdbMovieData
+                  // I APPEAR TO HAVE MADE ZERO USE OF MY file
+                  // style.css
 
                   // SEARCH RESULTS BOX IS INVISIBLE AT OPEN FORM
+                  // BY PUTTING THE change MARKER HERE THIS ALLOWS
+                  // THE APP TO CHANGE POSTER AT EVERY NEW SELECTION
+                  // FROM THE PULLDOWN LIST
                   console.log('cant see the search results box yet')
 $('#movie-select').hide().on('change', function() {
   show(this.value);
