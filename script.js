@@ -1,28 +1,36 @@
+let select = $('#movie-select')
+
+select.hide()
+
 $('#search').submit(e => {
   e.preventDefault()
   let input = $('#movie-search')
-  let search = input.val()
-  request(search)
+  let keyword = input.val()
+  search(keyword)
   input.val('')
 })
 
-function request(search) {
+function search(keyword) {
   $.ajax({
-    url: `http://www.omdbapi.com/?s=${search}`,
+    url: `http://www.omdbapi.com/?s=${keyword}`,
     type: 'get',
     dataType: 'json',
   }).done(response => {
-    selectorize(response)
-  }).fail(() => {
-    console.log("Ajax request fails!")
-  }).always(() => {
-    console.log("This always happens regardless of successful ajax request or not.")
+    selectorize(keyword, response)
   })
 }
 
-function selectorize(response) {
-  let movieArray = response.Search;
-  movieArray.forEach(movie => {
-    console.log(movie.Title)
+function selectorize(keyword, response) {
+  let movies = response.Search
+  select.append(`<option value="">Movies matching "${search}" ...</option>`)
+  movies.forEach(movie => {
+    select.append(`<option value="${movie}">${movie.Title}</option>`)
   })
+  select.show()
 }
+
+// .fail(() => {
+//   console.log("Ajax request fails!")
+// }).always(() => {
+//   console.log("This always happens regardless of successful ajax request or not.")
+// })
