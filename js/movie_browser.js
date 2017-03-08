@@ -30,12 +30,12 @@ function RouterFunction($locationProvider, $stateProvider){
   })
 }
 
-function MovieBrowserFactoryCallback($resource){
-  return $resource("http://www.omdbapi.com/?s=:searchTerm");
-}
-
 function MovieBrowserIndexControllerFunction(MovieBrowserFactory){
   this.search = function(){
     MovieBrowserFactory.get({searchTerm:this.searchTerm}).$promise.then( (resource) => this.movies = resource.Search );
   }
+}
+
+function MovieBrowserFactoryCallback($resource){
+  return $resource("http://www.omdbapi.com/?s=:searchTerm");
 }
