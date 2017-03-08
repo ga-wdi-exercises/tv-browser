@@ -27,8 +27,9 @@ $(".submit").on('click', (event) => {
     //   // )
     $("#movie-select").append(`<option>  Movies matching ${query}`)
     for (let i = 0; i < response.Search.length; i++) {
-      let newOption = "<option value=i>" + response.Search[i].Title ;
+      let newOption = "<option>" + response.Search[i].Title ;
       console.log(response.Search[i].Title)
+
       $("#movie-select").append(newOption)
     }
   }).fail(() => {
@@ -36,8 +37,9 @@ $(".submit").on('click', (event) => {
   })
 })
 
-$("#movie-select").on('change', (event) => {
+$("#movie-select").on('change', () => {
   //populate div
-  console.log("changed!")
-  $("#movie-detail").append(response.Search[i])
+  console.log(results)
+  let detail = "1"
+  $("#movie-detail").append(detail)
 })
