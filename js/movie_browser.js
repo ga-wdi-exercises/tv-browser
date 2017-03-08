@@ -36,9 +36,9 @@ function runFunction(){
       $('#movie_select').append(`<option> Movies matching "${search}" </option>`)
     movies.forEach((movie)=> {
 
-      $('#movie_select').append(` <option value="${movie}">${movie.Title}</option>`)
-                        .append(` <option value="${movie.imdbID}">${movie.Title}</option>`);
-    //  id = movie.id
+      $('#movie_select').append(` <option value="${movie.imdbID}">${movie.Title}</option>`);
+                        // .append(` <option value="${movie}">${movie.Title}</option>`).hide();
+       //  id = movie.id
       // $('#movie_detail').append(`<option>${movie.Title}</option>`);
 
     });
@@ -67,7 +67,7 @@ $.ajax({
 console.log(response);
 $('#movie_detail').empty()
                   .append(`<h1>${response.Title}</h1>`)
-                  .append(`<h2>${response.Actors}</h2>`)
+                  .append(`Actors:<h2>${response.Actors}</h2>`)
                   .append(`<img src="${response.Poster}" alt="image">`);
 })
 })
