@@ -20,9 +20,13 @@ $(document).ready(() => {
           $("#movie-select").append(`<option> Movies matching "${search}"...</option>`)
           // runs through every result from the api search
           for (var i=0; i < response.Search.length; i++) {
-              $("#movie-select").append(`<option data-value=${response.Search[i].Poster}>${response.Search[i].Title}</option>`)
+              $("#movie-select").append(`<option data-value=${response.Search[i].Poster}}>${response.Search[i].Title}</option>`)
           }
           $("#movie-select").change(function(){
+              // add title of selected movie
+            let title = $(this).find(":selected").html()
+            $("#movie-detail > h2").html(title)
+            // add photo of selected movie
             let photoUrl = $(this).find(":selected").data("value")
             $("img").attr("src", `${photoUrl}`)
           })
