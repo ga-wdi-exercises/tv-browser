@@ -39,7 +39,7 @@ $(".submit").on('click', (event) => {
 
 $("#movie-select").on('change', () => {
   //populate div
-  console.log(results)
+  console.log()
   let detail = "1"
   $("#movie-detail").append(detail)
 })
