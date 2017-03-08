@@ -24,3 +24,9 @@ select {
 #movie_select{
   display: none;
 }
+#movie_detail{
+  display: none;
+  height: 200px;
+  width: 300pc;
+  background-color: rgba(0, 0, 0, 0.3);
+}
