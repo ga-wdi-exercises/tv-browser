@@ -1,3 +1,22 @@
+                  /*#####################################
+                  201703080707L   EL MIERCOLES   JAY:    */
+
+/*#ng-hide {
+  visibility: hidden;
+}*/
+.ng-hide {
+  display: none !important;
+}
+.ng-show {
+  display: flex;
+}
+/*#movie-select {
+
+}*/
+                /*#####################################j */
+
+
+
 body {
   background: url('../images/reel.jpg') no-repeat left top;
   font: 16px/1.5 'Helvetica Neue', Helvetica, sans-serif;

@@ -1,26 +1,42 @@
+                  <!-- #####################################
+                  201703080707L   EL MIERCOLES   JAY -->
+                  <!-- Movie Browser
+                  Use the Open Movie Database API to build a single-page movie browser app.
+
+                  Requirements
+                  The "#movie-select" should be hidden by default.
+
+                  When the user may submits a search for a movie keyword...
+
+                  the "#movie-select" field should be un-hidden,
+                  it should be populated with all search results,
+                  and the first select option should read "Movies matching keyword…".
+                  Whenever the user selects a title from the #movie-select field (HINT: listen for a "change" event), the app should populate the "#movie-detail" div with that movie"s title and poster image. -->
+                  <!-- By default, the .ng-hide class will style the element with display: none !important. If you wish to change the hide behavior with ngShow/ngHide, you can simply overwrite the styles for the .ng-hide CSS class. Note that the selector that needs to be used is actually .ng-hide:not(.ng-hide-animate) to cope with extra animation classes that can be added. -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Movie Browser</title>
+  <meta charset="UTF-8">
+  <title>Movie Underground AJAX</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  
   <div class="browse">
-    <h1>Movie Browser</h1>
-
+    <h1> Movie Underground AJAX </h1>
+  </div>
     <form id="search">
       <input type="search" placeholder="Search for a title..." id="movie-search">
       <input type="submit" value="Submit">
     </form>
-    
-    <select id="movie-select">
-      <option value="">Select a movie...</option>
-    </select>
-
-    <div id="movie-detail"></div>
-  </div>
-
+                    <!-- <button>GET THE Movie</button>
+                    <script src="https://code.jquery.com/jquery-2.1.4.js"></script> -->
+     <div>
+       <select id="movie-select" >
+         <option value="">Select a movie...</option>
+       </select>
+      <div id="movie-detail"></div>
+      </div>
+  <!-- <script src="script.js"></script> -->
   <script src="js/jquery.js"></script>
   <script src="js/movie_browser.js"></script>
 </body>
