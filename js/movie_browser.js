@@ -8,6 +8,7 @@ $(document).ready(() => {
     let search = $("#movie-search").val()
     let url = `http://www.omdbapi.com/?s=${search}`
     $("#movie-select").show();
+    // removes all options from the select movie pull down bar
     $("#movie-select").empty();
 
     $.ajax({
@@ -15,11 +16,11 @@ $(document).ready(() => {
       type: "get",
       dataType: "json"
     }).done((response) => {
-      console.log("Search request success!")
-      moviesList = []
-
+      // shows what was searched
+      $("#movie-select").append(`<option> Movies matching "${search}"...</option>`)
+      // runs through every result from the api search
       for (var i=0; i < response.Search.length; i++) {
-        console.log(response.Search[i].Title)
+        $("#movie-select").append(`<option value=${response.Search[i]}>${response.Search[i].Title}</option>`)
       }
       // $("#movie-select").append(`<option value="${}"></option>`)
     }).fail(() => {
