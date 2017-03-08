@@ -1,7 +1,5 @@
 let select = $('#movie-select')
 
-select.hide()
-
 $('#search').submit(e => {
   e.preventDefault()
   let input = $('#movie-search')
@@ -22,15 +20,22 @@ function search(keyword) {
 
 function selectorize(keyword, response) {
   let movies = response.Search
-  select.append(`<option value="">Movies matching "${search}" ...</option>`)
+  select.empty()
+  select.append(`<option value="">Movies matching "${keyword}" ...</option>`)
   movies.forEach(movie => {
-    select.append(`<option value="${movie}">${movie.Title}</option>`)
+    select.append(`<option value="${movie.imdbID}">${movie.Title}</option>`)
   })
   select.show()
 }
 
-// .fail(() => {
-//   console.log("Ajax request fails!")
-// }).always(() => {
-//   console.log("This always happens regardless of successful ajax request or not.")
-// })
+select.hide().change(function() {
+  $.ajax({
+    url: `http://www.omdbapi.com/?i=${this.value}`,
+    type: 'get',
+    dataType: 'json',
+  }).done(response => {
+    $('#movie-detail').empty()
+      .append(`<h2>${response.Title}</h2>`)
+      .append(`<img src="${response.Poster}" alt="'${response.Title}' poster">`)
+  })
+})
