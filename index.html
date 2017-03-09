@@ -1,24 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang= "en" ng-app='movie_browserApp'>
 <head>
   <title>Movie Browser</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  
+  <body ng-controller='movieCtrl as vm'>
   <div class="browse">
     <h1>Movie Browser</h1>
 
-    <form id="search">
+    <form id="search" ng-sumbit="vm.search()">
       <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
+      <input class="find" type="submit" value="Search Movies">
     </form>
-    
+
     <select id="movie-select">
       <option value="">Select a movie...</option>
+      <option ng-repeat="movie in vm.movies">{{movie.Title}}</option>
     </select>
 
     <div id="movie-detail"></div>
+      <h2 class="movie"></h2>
+    <img id="poster">
   </div>
 
   <script src="js/jquery.js"></script>
