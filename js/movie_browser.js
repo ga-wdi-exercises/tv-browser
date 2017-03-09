@@ -12,14 +12,20 @@ $("input[type='submit']").on("click", function(){
     console.log(response)
     for (var i =0; i < response.Search.length; i++){
       var movie = response.Search[i]
-      $("#movie-select").append(`<option value = "${movie.Title}">${movie.Title}</option>`)
+      $("#movie-select").append(`<option data-value="${movie.Poster}">${movie.Title}</option>`)
     }
     $("#movie-select").css("display", "inline-block")
-    movieOption = $("#movie-select").find(":selected").val()
-    console.log(movieOption)
+    movieOption = $("#movie-select").change(function (){
+      let movie = $(this).find(":selected").html()
+      $("#movie-detail").html(movie)
+      let photoUrl = $(this).find(":selected").data("value")
+      $("img").attr("src", `${photoUrl}`)
+      console.log(photoUrl)
+    })
+
   })
 
-  
+
 
 
 
