@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Movie Browser</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-  <div class="browse">
-    <h1>Movie Browser</h1>
+<html lang="en" data-ng-app="movieBrowser">
+  <head>
+    <meta charset="UTF-8">
+    <title>Movie Browser</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
 
-    <form id="search">
-      <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
-    </form>
-    
-    <select id="movie-select">
-      <option value="">Select a movie...</option>
-    </select>
+  <body>
+    <main class="browse">
+      <h1>Movie Browser Online</h1>
+      <h3>Find your favorite movies!</h3>
+      <div data-ui-view></div>
+    </main>
 
-    <div id="movie-detail"></div>
-  </div>
-
-  <script src="js/jquery.js"></script>
-  <script src="js/movie_browser.js"></script>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-resource.min.js"></script>
+    <script src="js/movie_browser.js"></script>
+  </body>
 </html>
