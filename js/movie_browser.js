@@ -6,7 +6,7 @@ $("#movie-select").hide()
 $(".submit").on('click', (event) => {
   event.preventDefault()
   let query = $("#movie-search").val()
-  url = `http://www.omdbapi.com/?s=${query}`;
+  let url = `http://www.omdbapi.com/?s=${query}`;
   console.log(url)
   $.ajax ({
     url: url,
@@ -14,7 +14,8 @@ $(".submit").on('click', (event) => {
     dataType: "json"
   }).done((response) => {
     $("#movie-select").show();
-    // console.log(response.Search[0].Title);
+
+    console.log(response.Search);
     // // $("#movie-select").append(
     //   // //loop thorugh array
     //   // for (let i = 0; i < response.search.length; i++) {
@@ -27,8 +28,9 @@ $(".submit").on('click', (event) => {
     //   // )
     $("#movie-select").append(`<option>  Movies matching ${query}`)
     for (let i = 0; i < response.Search.length; i++) {
-      let newOption = "<option>" + response.Search[i].Title ;
-      console.log(response.Search[i].Title)
+      let newOption = `<option value=${response.Search[i].imdbID}>${response.Search[i].Title}</option>` ;
+
+      console.log(newOption)
 
       $("#movie-select").append(newOption)
     }
@@ -39,7 +41,17 @@ $(".submit").on('click', (event) => {
 
 $("#movie-select").on('change', () => {
   //populate div
-  console.log()
-  let detail = "1"
-  $("#movie-detail").append(detail)
+  let url = `http://www.omdbapi.com/?i=${$( "select#movie-select option:checked" ).val()}`
+  console.log(url)
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "json"
+  }).done((response) => {
+    console.log(response)
+    let detail = response.Title
+    console.log(detail)
+    $("#movie-detail").html(detail)
+  })
+
 })
