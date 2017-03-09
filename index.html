@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movie Browser</title>
+  <title>Movie Browser Homework</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  
-  <div class="browse">
-    <h1>Movie Browser</h1>
 
-    <form id="search">
+  <div class="browse">
+    <h1>Movie Browser HW</h1>
+
+    <form id="search"> action="#" onsubmit="movieBrowserFunction">
       <input type="search" placeholder="Search for a title..." id="movie-search">
       <input type="submit" value="Submit">
     </form>
-    
+
     <select id="movie-select">
       <option value="">Select a movie...</option>
     </select>
 
     <div id="movie-detail"></div>
+    <h2 class="movie"> </h2>
+    <img id="poster">
   </div>
 
   <script src="js/jquery.js"></script>
