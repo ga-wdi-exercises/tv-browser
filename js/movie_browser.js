@@ -1,6 +1,10 @@
 // API Docs at:
 // http://www.omdbapi.com
 $(document).ready(() => {
+
+  let movies = []
+
+
   $("#search").on('submit', () => {
     event.preventDefault()
     // console.log("clicked");
@@ -13,19 +17,27 @@ $(document).ready(() => {
       dataType: "json"
     })
     .done((response) => {
-      // console.log(response);
+      console.log(response);
+      movies = response.Search
       $(".default").html(`<option class ="default" value="">Movies matching "${searchQuery}"...</option>`)
-      // $("#movie-select").append(`<option value="">Movies matching ${searchQuery}...</option>`)
-      $("#movie-select").show()
-      response.Search.forEach((movie) => {
-        $("#movie-select").append(`<option value="${movie.Title}">${movie.Title}</option>`)
-      })
-      // $(".browse").append($(`<div class='response'>Movies that match ${searchQuery}.</div>`))
-    })
-    .fail(() => {
-      console.log("fail");
-      $(".default").html(`<option class ="default" value="">Sorry, no movies found.</option>`)
-()
-    })
+
+      if(response.Search) {
+        $("#movie-select").show()
+        response.Search.forEach((movie, index) => {
+          $("#movie-select").append(`<option value="${index}">${movie.Title}</option>`)
+        })
+      }
+      $("#movie-search").empty()
   })
+
+})
+
+$('#movie-select').on("change", function() {
+  $(".title", "img").remove()
+  let currentMovie = movies[this.value]
+  $("#movie-detail").append(`<div class="title">${currentMovie.Title}</div><img src="${currentMovie.Poster}">`)
+  // console.log(currentMovie)
+})
+
+
 })
