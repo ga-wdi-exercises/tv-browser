@@ -4,12 +4,12 @@
   <title>Movie Browser Homework</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-  <div class="browse">
+<body ng-controller='movieCtrl as vm' >
+<div class="browse">
     <h1>Movie Browser HW</h1>
 
-    <form id="search"> action="#" onsubmit="movieBrowserFunction">
+    <form id="search" ng-sumbit="vm.search()">
       <input type="search" placeholder="Search for a title..." id="movie-search">
       <input type="submit" value="Submit">
     </form>
