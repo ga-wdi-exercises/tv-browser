@@ -2,6 +2,7 @@
 // http://www.omdbapi.com
 $("button").on("click", (event) => {
   // Make sure to add your API key to the URL!
+  $("#movie-select").css('display','block')
   event.preventDefault();
   var search = $('#movie-search').val()
   var url = "http://www.omdbapi.com/?s=" +escape(search)
@@ -17,6 +18,8 @@ $("button").on("click", (event) => {
   }).done((response) => {
     var titles = []
     data = response.Search
+    $("#movie-select").empty()
+    $("#movie-select").append("<option>" + "Movies matching" + " " + search + "</option>")
 
     function getTitle() {
       for(var i = 0; i < data.length; i++) {
