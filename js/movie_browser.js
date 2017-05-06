@@ -22,13 +22,12 @@ $("#submit").on("click", (event) => {
     function getTitle() {
       for (var i = 0; i < data.length; i++) {
         var newTitle = data[i].Title
-        titles.push(newTitle)
-
+        // titles.push(newTitle)
+        $("#movie-select").append("<option>" + newTitle + "</option>")
       }
-console.log (titles)
+      // console.log (titles)
     }
-
-    console.log(response.Search[0].Title)
+    // console.log(response.Search[0].Title)
     getTitle()
 
   }).fail((message) => {
