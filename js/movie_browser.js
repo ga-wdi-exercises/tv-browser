@@ -17,6 +17,7 @@ $("#submit").on("click", (event) => {
     dataType: "json"
   }).done((response) => {
     var titles = []
+    $("#movie-select").empty()
     data = response.Search
 
     function getTitle() {
