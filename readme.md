@@ -5,6 +5,7 @@ Use the [Open Movie Database API](http://www.omdbapi.com/) to build a single-pag
 ## Requirements
 
  1. The `"#movie-select"` should be hidden by default.
+ DONE!!
 
  2. When the user may submits a search for a movie keyword...
   - the `"#movie-select"` field should be un-hidden,
@@ -12,9 +13,9 @@ Use the [Open Movie Database API](http://www.omdbapi.com/) to build a single-pag
   - and the first select option should read "Movies matching `keyword`…".
 
  3. Whenever the user selects a title from the `#movie-select` field (HINT: listen for a `"change"` event), the app should populate the `"#movie-detail"` div with that movie's title and poster image.
- 
+
  > **Note**: you should not need to use a separate API or use a separate API call.
 
 ## Take a look:
 
-http://ga-wdi-exercises.github.io/movie-browser/ 
+http://ga-wdi-exercises.github.io/movie-browser/
