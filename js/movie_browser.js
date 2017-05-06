@@ -16,7 +16,20 @@ $("#submit").on("click", (event) => {
     type: "get",
     dataType: "json"
   }).done((response) => {
-    console.log(response)
+    var titles = []
+    data = response.Search
+
+    function getTitle() {
+      for (var i = 0; i < data.length; i++) {
+        var newTitle = data[i].Title
+        titles.push(newTitle)
+
+      }
+console.log (titles)
+    }
+
+    console.log(response.Search[0].Title)
+    getTitle()
 
   }).fail((message) => {
     console.log("Ajax request fails!")
