@@ -22,8 +22,10 @@ $("button").on("click", (event) => {
       for(var i = 0; i < data.length; i++) {
         var newTitle = data[i].Title
         titles.push(newTitle)
+        $("#movie-select").append("<option>" + newTitle + "</option>")
       }
       console.log(titles)
+
     }
     getTitle()
 
