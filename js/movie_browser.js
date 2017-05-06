@@ -18,6 +18,7 @@ $("#submit").on("click", (event) => {
   }).done((response) => {
     var titles = []
     $("#movie-select").empty()
+      $("#movie-select").append("<option>" + "Movies matching " + search + "</option>")
     data = response.Search
 
     function getTitle() {
