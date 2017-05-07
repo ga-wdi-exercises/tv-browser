@@ -25,9 +25,10 @@ $("#submit").on('click', () => {
         $("#movie-select").append(`<option>${movie.Title}</option>`)
       })
     }
+
   $("#movie-select").change(() => {
     let movieDetails = $("#movie-select").find(':selected').html();
-    $("#movie-detail").html(`<h2>${movieDetails}</h2>`)
+    $("#movie-detail").html(`<h2>${movieDetails}</h2><br><img src=${results[0].Poster}`)
   })
 
   }).fail(() => {
