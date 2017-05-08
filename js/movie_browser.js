@@ -36,6 +36,7 @@ $("#submit").on("click", (event) => {
     getTitle()
 
     $("#movie-select").change(function(){
+      $("#photo").html("")
       var selectedTitle = $("#movie-select").find(":selected").html();
       console.log(selectedTitle)
       for (var i = 0; i < data.length; i++) {
