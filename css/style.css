@@ -21,6 +21,6 @@ select {
   width: 200px;
 }
 
-option {
+#movie-select {
     display: none;
 }
