@@ -4,7 +4,7 @@ $("#submit").on('click', () => {
     event.preventDefault()
 
     let keycode = $("movie-search").val()
-    let url = 'http://www.omdbapi.com/?s=' + key;
+    let url = 'http://www.omdbapi.com/?s=' + keycode;
     $.ajax({
         url: url,
         type: 'get',
@@ -26,8 +26,8 @@ $("#submit").on('click', () => {
    }
 
     $("#movie-select").change(() => {
-        let movieDetails = $("#movie-select").find(':selected').html();
-        $("#movie-detail").html(`<h3>${movieDetails}</h3>`)
+        let movieInfo = $("#movie-select").find(':selected').html();
+        $("#movie-detail").html(`<h3>${movieInfo}</h3><br><img src=${results[0].Poster}>')
  })
     }).fail(()=>{
 
