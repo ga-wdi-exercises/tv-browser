@@ -1,6 +1,8 @@
 // API Docs at:
 // http://www.omdbapi.com
-"http://www.omdbapi.com/?"
+// "http://www.omdbapi.com/?"
+
+
 
 $("#submit").on("click", (event) => {
    event.preventDefault();
@@ -20,6 +22,7 @@ $("#submit").on("click", (event) => {
     $("#movie-select").empty()
       $("#movie-select").append("<option>" + "Movies matching " + search + "</option>")
     data = response.Search
+    console.log(data)
 
     function getTitle() {
       for (var i = 0; i < data.length; i++) {
@@ -31,6 +34,17 @@ $("#submit").on("click", (event) => {
     }
     // console.log(response.Search[0].Title)
     getTitle()
+
+    $("#movie-select").change(function(){
+      var selectedTitle = $("#movie-select").find(":selected").html();
+      console.log(selectedTitle)
+      for (var i = 0; i < data.length; i++) {
+        if (selectedTitle === data[i].Title) {
+          $("#title").html(data[i].Title)
+          $("#photo").append("<img src=" + data[i].Poster + ">")
+        }
+      }
+    })
 
   }).fail((message) => {
     console.log("Ajax request fails!")
