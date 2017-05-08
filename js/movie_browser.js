@@ -17,7 +17,7 @@ $("button").on("click", (event) => {
     // (3) Datatype. Usually JSON.
   }).done((response) => {
     var titles = []
-    data = response.Search
+    var data = response.Search
     $("#movie-select").empty()
     $("#movie-select").append("<option>" + "Movies matching" + " " + search + "</option>")
 
@@ -32,10 +32,27 @@ $("button").on("click", (event) => {
     }
     getTitle()
 
+
+    $("#movie-select").change(function()
+    {
+      var selectedTitle = $("#movie-select").find(":selected").html();
+      for(var i = 0; i < data.length; i++){
+        if(selectedTitle=== data[i].Title){
+            $("#movie-title").html(data[i].Title)
+            $("#movie-image").append("<img src=" + data[i].Poster + ">");
+
+        }
+      }
+
+    })
+
+
   }).fail(() => {
     console.log("Ajax request fails!")
   }).always(() => {
     console.log("This always happens regardless of successful ajax request or not.")
   })
+
+
 
 })
