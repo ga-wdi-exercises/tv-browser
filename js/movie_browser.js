@@ -1,22 +1,13 @@
 // API Docs at:
 // http://www.omdbapi.com
 
-angular
-  .module("movieBrowser", [])
+$("submit").on("click", () =>{
 
-  .controller("MoviesController", [
-    MoviesControllerFunction
-  ])
+  $.ajax ({
+    url: "http://www.omdbapi.com/?",
+    type: "get",
+    dataType: "json"
+  })
 
-function MoviesControllerFunction () {
 
-}
-$('#movie-select').hide().on('change', function() {
-  show(this.value);
-});
-
-$.ajax ({
-  url: "http://www.omdbapi.com/?",
-  type: "get",
-  dataType: "json"
 })
