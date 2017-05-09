@@ -11,16 +11,16 @@
 
     <form id="search">
       <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
+      <input class="submit" type="submit" value="Submit">
     </form>
     
     <select id="movie-select">
-      <option value="">Select a movie...</option>
+      <option id="first-option" value="">Select a movie...</option>
     </select>
 
     <div id="movie-detail"></div>
   </div>
-
+  <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/movie_browser.js"></script>
 </body>
