@@ -1,14 +1,30 @@
 // API Docs at:
 // http://www.omdbapi.com
+var movieSearch = $("#movie-search");
+
+$("submit").on("click", (event) =>{
+
+  event.preventDefault();
+
+  var title = movieSearch.val();
 
 
-$("submit").on("click", () =>{
+  var url = "http://www.omdbapi.com/?s=" + escape(title)
+  
 
   $.ajax ({
-    url: "http://www.omdbapi.com/?",
+    url: url,
     type: "get",
     dataType: "json"
-  })
+  }).done(() => {
+    console.log("Ajax request success!")
 
+  }).fail(() => {
+    console.log("Ajax request fails!")
+
+  }).always(() => {
+    console.log("This always happens regardless of successful ajax request or not.")
+
+  });
 
 })
