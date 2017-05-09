@@ -20,11 +20,7 @@ $(".submit").on("click", (event) => {
 		for(var i=0; i < response.Search.length; i++){
 		searchresults.push([response.Search[i].Title, response.Search[i].Poster])	
 		movieSelect.append("<option>" + response.Search[i].Title + "</option>")
-		// movieDetail.append("<div>" + "<img src=" + response.Search[i].Poster + "/>" + "</div>")
-
 		}
-		console.log("search results are" + searchresults)
-		console.log("the first result is" + searchresults[0])
 		console.log("Ajax request success!")
 	}).fail(() => {
 		console.log("Ajax request fails!")
@@ -36,13 +32,15 @@ $(".submit").on("click", (event) => {
 
 	movieSelect.change(function(){
   	let listSelection = movieSelect.val()
-  	console.log("listSelection is" + listSelection)
   	
-    movieDetail.text( searchresults[0][0] );
-    movieDetail.append("<div>" + "<img src=" + searchresults[0][1]+ "/>" + "</div>");
+  	for(i=0; i<searchresults.length; i++){
+  		if (searchresults[i][0] == listSelection){
+    		movieDetail.text( searchresults[i][0] );
+    		movieDetail.append("<div>" + "<img src=" + searchresults[i][1]+ "/>" + "</div>");
+		}
+	}
   })
  
-
 })
 
 
