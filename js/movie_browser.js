@@ -10,7 +10,7 @@ $("submit").on("click", (event) =>{
 
 
   var url = "http://www.omdbapi.com/?s=" + escape(title)
-  
+
 
   $.ajax ({
     url: url,
@@ -27,4 +27,10 @@ $("submit").on("click", (event) =>{
 
   });
 
+
+  function doneSearch(){
+    var display = '<option value="">"Movies matching" + title + "..."</option>';
+  }
+
+  $("#movie-select").show().html(display);
 })
