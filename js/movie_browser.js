@@ -14,24 +14,27 @@ $("#movie-search-button").on("click", (event) => {
     type: "get",
     dataType: "json"
   }).done((response) => {
+
     $("#movie-select").append(`<option> Movies matching "${keyword}"...</option>`)
-    searchAll(response)
+    response.Search.forEach(function(movie){
+      $("#movie-select").append(`<option>${movie.Title}</option>`);
+    })
+
+    $("#movie-select").on("change", () => {
+      let selected = $("#movie-select").val()
+      for (i = 0; i < response.Search.length; i++) {
+        if (selected == response.Search[i].Title) {
+          $("#movie-detail").empty().append(`<h2> "${response.Search[i].Title}"</h2><img src="${response.Search[i].Poster}" />`)
+          return console.log("got it")
+        }
+      }
+
+    })
 
 
   }).fail(() => {
    console.log("Ajax request fails!")
   }).always(() => {
-    // console.log(url)
+    console.log("This always happens regardless of successful ajax request or not.")
   })
 })
-
-function searchAll (response){
-  for (i = 0; i < response.Search.length; i++) {
-    let title = response.Search[i].Title;
-    $("#movie-select").append(`<option> "${title}" </option>`);
-  }
-}
-
-function showDetail (selected){
-
-}
