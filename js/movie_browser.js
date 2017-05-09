@@ -19,6 +19,7 @@ $(".submit").on("click", (event) => {
 		firstOption.text("Movies matching " + selection + ":")
 		for(var i=0; i < response.Search.length; i++){
 		movieSelect.append("<option>" + response.Search[i].Title + "</option>")
+		movieDetail.append("<div>" + "<img src=" + response.Search[i].Poster + "/>" + "</div>")
 		}
 		console.log("Ajax request success!")
 	}).fail(() => {
