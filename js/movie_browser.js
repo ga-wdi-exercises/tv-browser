@@ -30,6 +30,7 @@ $("#movie-select").change(() => {
 	movieList.forEach((item) => {
 		if (movieSelected === item.Title) {
 			console.log(item.Title)
+			$("#movie-detail").empty()
 			$("#movie-detail").append(`
 				<h3>${item.Title}</h3>
 				<img src="${item.Poster}" />			
