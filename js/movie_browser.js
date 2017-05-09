@@ -26,12 +26,13 @@ $(".submit").on("click", (event) => {
 	}).always(() => {
 		console.log("This always happens regardless of successful ajax request or not.")
 	})
+
 	movieSelect.change(function(){
-    var str = "";
+    var title = "";
     $( "select option:selected" ).each(function() {
-      str += $( this ).text() + " ";
+      title = $( this ).text();
     });
-    movieDetail.text( str );
+    movieDetail.text( title );
   })
  
 
