@@ -1,6 +1,7 @@
 var movieSearch = $("#movie-search");
 var movieSelect = $("#movie-select");
-var firstOption = $(".first-option");
+var firstOption = $("#first-option");
+var movieDetail = $("#movie-detail");
 
 movieSelect.hide();
 
@@ -25,4 +26,15 @@ $(".submit").on("click", (event) => {
 	}).always(() => {
 		console.log("This always happens regardless of successful ajax request or not.")
 	})
+	movieSelect.change(function(){
+    var str = "";
+    $( "select option:selected" ).each(function() {
+      str += $( this ).text() + " ";
+    });
+    movieDetail.text( str );
+  })
+ 
+
 })
+
+
