@@ -1,5 +1,3 @@
-// API Docs at: 
-// http://www.omdbapi.com
 var movieSearch = $("#movie-search");
 
 $(".submit").on("click", (event) => {
@@ -8,12 +6,18 @@ $(".submit").on("click", (event) => {
 	console.log(selection)
 	var url = "http://www.omdbapi.com/?s=" + escape(selection)
 	console.log(url)
+
 	$.ajax ({
 		url: url,
 		type: "get", 
 		dataType: "json"
 	}).done((response) => {
-		console.log(response)
+		var results = []
+		for(var i=0; i < response.Search.length; i++){
+		results.push(response.Search[i].Title)
+
+		}
+		console.log(results)
 		console.log("Ajax request success!")
 	}).fail(() => {
 		console.log("Ajax request fails!")
