@@ -1,23 +1,24 @@
 // API Docs at:
 // http://www.omdbapi.com
-var movieSearch = $("#movie-search");
+
 
 $("submit").on("click", (event) =>{
 
   event.preventDefault();
 
-  var title = movieSearch.val();
+  var movieSearch = $("input#movie-search");
+  var movie = movieSearch.val();
 
 
-  var url = "http://www.omdbapi.com/?s=" + escape(title)
+  var url = "http://www.omdbapi.com/?t="+escape(movie);
 
 
   $.ajax ({
     url: url,
     type: "get",
     dataType: "json"
-  }).done(() => {
-    console.log("Ajax request success!")
+  }).done((response) => {
+    console.log("this is great")
 
   }).fail(() => {
     console.log("Ajax request fails!")
@@ -33,4 +34,7 @@ $("submit").on("click", (event) =>{
   }
 
   $("#movie-select").show().html(display);
+
+
+
 })
