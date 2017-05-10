@@ -1,27 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head>
+ <!DOCTYPE html>
+  <html>
+  <head>
   <title>Movie Browser</title>
   <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-  <div class="browse">
-    <h1>Movie Browser</h1>
+  <meta name=UTF-8 charset="iso-8859-1" />
+  <title>event.preventDefault demo</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+
+
+  </head>
+  <body>
+  	<!-- HTML for SEARCH BAR -->
+
+    <a href="http://jquery.com">default click action is prevented</a>
+    <div id="log"></div>
+
+    <div class="browse">
+      <h1>Movie Browser</h1>
+
+    <div id="tfheader">
+  		<form id="tfnewsearch" method="get" action="http://www.imdb.com/">
+  		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+
+
+    </form>
+  	<div class="tfclear"></div>
+  	</div>
 
     <form id="search">
-      <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
-    </form>
-    
-    <select id="movie-select">
-      <option value="">Select a movie...</option>
-    </select>
+        <input type="search" placeholder="Search for a title..." id="movie-search">
+        <input type="submit" value="Submit">
 
-    <div id="movie-detail"></div>
-  </div>
+     </form>
 
-  <script src="js/jquery.js"></script>
-  <script src="js/movie_browser.js"></script>
-</body>
-</html>
+      <select id="movie-select">
+        <option value="">Select a movie...</option>
+      </select>
+
+      <div id="movie-detail">
+       <!-- <option value= "title"></<option>
+       <option value= "photo_url"></option>
+       <option value="imdbID"></option> -->
+      </div>
+
+
+    <script src="js/jquery.js"></script>
+    <script src="js/movie_browser.js"></script>
+
+  </body>
+  </html>
