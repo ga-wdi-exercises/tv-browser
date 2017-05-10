@@ -1,16 +1,19 @@
 // API Docs at:
 // http://www.omdbapi.com
 
+$("#movie-select").hide;
 
-$("submit").on("click", (event) =>{
-
+$("button").click(function (event) {
+    console.log("working");
   event.preventDefault();
+
+
 
   var movieSearch = $("input#movie-search");
   var movie = movieSearch.val();
 
 
-  var url = "http://www.omdbapi.com/?t="+escape(movie);
+  var url = "http://www.omdbapi.com/?t=" + escape(movie);
 
 
   $.ajax ({
@@ -29,11 +32,11 @@ $("submit").on("click", (event) =>{
   });
 
 
-  function doneSearch(){
-    var display = '<option value="">"Movies matching" + title + "..."</option>';
+  function doneSearch(movie){
+    var display = '<option value="">Movies matching "'+ movie +'"...</option>';
   }
 
-  $("#movie-select").show().html(display);
+
 
 
 
