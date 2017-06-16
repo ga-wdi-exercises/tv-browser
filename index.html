@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html ng-app="mb">
 <head>
-  <title>Movie Browser</title>
+  <title>TV Browser</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>s
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
   <div class="browse">
-    <h1>Movie Browser</h1>
-    <div ui-view>
 
-    </div>
+    <h1> TV Browser </h1>
+
+    <!-- UI Router Equivalent of <%= yield %> from Rails  -->
+    <!-- renders template views inside the <div></div> below  -->
+    <div ui-view></div>
 
   </div>
 
-  <script src="js/jquery.js"></script>
-  <script src="js/movie_browser.js"></script>
+  <script src="js/src/jquery.js"></script>
+  <script src="js/tv_browser.js"></script>
 </body>
 </html>
