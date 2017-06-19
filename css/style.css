@@ -1,22 +1,36 @@
 body {
-  background: url('../images/reel.jpg') no-repeat left top;
-  font: 16px/1.5 'Helvetica Neue', Helvetica, sans-serif;
+  font: 16px/1.5 Courier, monospace;
   margin: 0;
+}
+
+main {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .browse {
   padding: 10px 25px;
 }
 
-h1 {
-  margin: 0;
-}
-
 a {
   color: #c00;
 }
 
-input[type="search"],
+input {
+  width: 20em;
+}
+
+input[type="search"] {
+  font-size: 200%;
+  margin: 1em;
+}
+
 select {
-  width: 200px;
+  font-size: 150%;
+}
+.fail {
+  color: red;
 }
