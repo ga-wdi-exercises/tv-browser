@@ -9,7 +9,7 @@ function search (keyword) {
       // in the TV Maze API's response along with the search term
       buildOptionsForSelect(keyword, response)
     })
-    .fail(function (imdbResonse, textStatus, errorMessage) {
+    .fail(function (apiResonse, textStatus, errorMessage) {
       let failMessage = `Sorry, we had issues retrieving data for ${keyword}`
       if (errorMessage) {
         failMessage += ` (${errorMessage})`
