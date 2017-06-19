@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Movie Browser</title>
+  <title>TV Maze API Search</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <main>
 
-  <div class="browse">
-    <h1>Movie Browser</h1>
+    <img src="./images/tvm_api.png"
 
-    <form id="search">
-      <input type="search" placeholder="Search for a title..." id="movie-search">
-      <input type="submit" value="Submit">
-    </form>
+    <div class="browse">
+      <form id="search">
+        <input type="search" placeholder="Search for a title..." id="show-search">
+        <input type="submit" value="Submit">
+      </form>
 
-    <select id="movie-select">
-      <option value="">Select a movie...</option>
-    </select>
+      <select id="show-select">
+        <option value="">Select a show...</option>
+      </select>
 
-    <div id="movie-detail"></div>
-  </div>
+      <div id="show-detail"></div>
+
+    </div>
+  </main>
 
   <script src="js/src/jquery.js"></script>
-  <script src="js/movie_browser.js"></script>
+  <script src="js/show_browser.js"></script>
 </body>
 </html>
