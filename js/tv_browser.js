@@ -29,7 +29,7 @@ $(document).ready(function(){
 		for (let i = 0; i<data.length;i++){
 			$('#show-select').append(`<option value="${i}">${data[i].show.name}</option>`)
 		}
-
+		$('#show-select:first-child').
 	}
  	function clearMenu() {
  		$('#show-select > *').remove()
