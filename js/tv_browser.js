@@ -33,6 +33,7 @@ $(document).ready(function(){
 	}
  	function clearMenu() {
  		$('#show-select > *').remove()
+ 		$('#show-detail > *').remove()
  	}
 
  	function popDetail(data) {
@@ -41,11 +42,11 @@ $(document).ready(function(){
 			let text = "";
 			$("option:selected").each(function() {
 				let sel = $("option:selected").val()
-				text = data[sel].show.summary
-				//name
-				//image
+				text = '<h3>'+data[sel].show.name+'</h3>'+
+						data[sel].show.summary+
+						'<img src="'+data[sel].show.image.medium+'">';
 			})
-			$( "#show-detail" ).text( text )
+			$( "#show-detail" ).html( text )
 		})
  	}
 
