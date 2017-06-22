@@ -1,6 +1,6 @@
 // API Docs at:
 // http://www.tvmaze.com/api
-//Adrian: Help review code, Help format terminal bash commands
+
 
 $(document).ready(()=> {
   $('#show-select').hide()
@@ -8,7 +8,6 @@ $(document).ready(()=> {
 
     let query = $('#show-search').val()
     let url = 'http://api.tvmaze.com/search/shows?q=' + query
-    // console.log(url);
     $('#show-select').show();
     event.preventDefault();
 
@@ -38,6 +37,5 @@ $(document).ready(()=> {
       $('#show-detail').append(`<div><h1>Show Details</h1><p><a href="${response.url}">${response.name}</a></p></div>`)
     })
   })
-  //add event listner that'll populate show details in show-detail
 
 })
