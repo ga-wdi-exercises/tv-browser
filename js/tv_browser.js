@@ -20,8 +20,11 @@ $("#search").submit(function (event) {
 
   $("#show-select").change(function() {
     console.log($(this.selectedIndex))
-    var indexNumber = this.selectedIndex
-      $("#show-detail").append(`<div> ${apiResults.indexNumber} </div>`)
+    var num = parseInt(this.selectedItem)
+    console.log(num)
+    var selectedItem = apiResults[num]
+    console.log(selectedItem)
+      $("#show-detail").append(`<div> ${selectedItem} </div>`);
   })
 })
 
