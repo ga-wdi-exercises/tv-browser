@@ -20,11 +20,15 @@ $(document).ready(() => {
         $('#show-select').append(`<option class='new'>${response[i].show.name}</option>`)
       }
       $('#show-select').change(function () {
-        $('#show-detail').empty()
-        var index = $('#show-select').prop('selectedIndex') - 1
-        $('#show-detail').append(`<h2 class='info'>${response[index].show.name}<h2>`)
-        $('#show-detail').append(`<img src="${response[index].show.image.medium}" alt="Image of ${response[index].show.name}">`)
-        $('#show-detail').append(`<p class='info'>${response[index].show.summary}</p>`)
+        if ($('#show-select').val() !== `shows matching ${search.toLowerCase()}...`) {
+          console.log(`${search.toLowerCase()}`)
+          $('#show-detail').empty()
+          var index = $('#show-select').prop('selectedIndex') - 1
+          $('#show-detail').append(`<h2 class='info'>${response[index].show.name}<h2>`)
+          var imageUrl = response[index].show.image ? response[index].show.image.medium : ''
+          $('#show-detail').append(`<img src="${imageUrl}" alt="No image for ${response[index].show.name}">`)
+          $('#show-detail').append(`<p class='info'>${response[index].show.summary}</p>`)
+        }
       })
     }).fail(() => {
       console.log('BOO')
