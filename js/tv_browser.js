@@ -21,15 +21,18 @@ $(document).ready(function () {
       }
 
       $('#show-select').change(function () {
-        let selection = $('#show-select').prop('selectedIndex')
-        if (selection >= 0) {
-          var index = selection - 1
-        }
         $('#show-detail').empty()
-        $('#show-detail').append(`<h2>${response[index].show.name}</h2>`)
-        $('#show-detail').append(`<img src=${response[index].show.image.medium}>`)
-        $('#show-detail').append(`<p>${response[index].show.summary}</p>`)
+
+        let index = $('#show-select').prop('selectedIndex') - 1
+        if (index >= 0) {
+          console.log(response, index)
+          $('#show-detail').append(`<h2>${response[index].show.name}</h2>`)
+          let img = response[index].show.image ? response[index].show.image.medium : ""
+          $('#show-detail').append(`<img src=${img}>`)
+          $('#show-detail').append(`<p>${response[index].show.summary}</p>`)
+        }
       })
+
     }).fail(() => {
       console.log('Ajax request fails!')
     })
