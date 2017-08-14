@@ -30,6 +30,7 @@ input[type="search"] {
 
 select {
   font-size: 150%;
+  display: none;
 }
 .fail {
   color: red;
