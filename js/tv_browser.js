@@ -25,10 +25,11 @@ $(document).ready(() => {
         }
 
       $('#show-select').change(function(){
+        $('#show-detail').empty()
         var index = $('#show-select').val()
         const show = response[index].show
-        $('#show-detail').append(`<p>${show.name}</p>`)
-        $('#show-detail').append(`<img src=${show.image.medium}></img>`)
+        $('#show-detail').append(`<div><p>${show.name}</p>
+          <img src=${show.image.medium}></img></div>`)
       })
 
     }).fail(() => {
