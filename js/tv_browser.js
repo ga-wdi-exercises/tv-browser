@@ -19,6 +19,7 @@ $(document).ready(() => {
     }).done((response) => {
       console.log(response)
       $('#show-select').show()
+      $('#show-select').empty()
       $('select').append(`<option>Shows matching "${tvShow}"</option>`)
       for (i = 0; i < response.length; i++){
           $('select').append(`<option value=${i}>${response[i].show.name}</option>`)
