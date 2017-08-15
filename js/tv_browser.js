@@ -21,11 +21,14 @@ $(document).ready(() => {
       $('#show-select').show()
       $('select').append(`<option>Shows matching "${tvShow}"</option>`)
       for (i = 0; i < response.length; i++){
-          $('select').append(`<option id=${i}>${response[i].show.name}</option>`)
+          $('select').append(`<option value=${i}>${response[i].show.name}</option>`)
         }
 
       $('#show-select').change(function(){
-        $('#show-detail').append(`<p>hi</p>`)
+        var index = $('#show-select').val()
+        const show = response[index].show
+        $('#show-detail').append(`<p>${show.name}</p>`)
+        $('#show-detail').append(`<img src=${show.image.medium}></img>`)
       })
 
     }).fail(() => {
