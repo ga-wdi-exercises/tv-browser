@@ -21,8 +21,13 @@ $(document).ready(() => {
       $('#show-select').show()
       $('select').append(`<option>Shows matching "${tvShow}"</option>`)
       for (i = 0; i < response.length; i++){
-          $('select').append(`<option>${response[i].show.name}</option>`)
+          $('select').append(`<option id=${i}>${response[i].show.name}</option>`)
         }
+
+      $('#show-select').change(function(){
+        $('#show-detail').append(`<p>hi</p>`)
+      })
+
     }).fail(() => {
       console.log('request failed')
     }).always(() => {
