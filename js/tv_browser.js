@@ -18,11 +18,11 @@ $(document).ready(() => {
       dataType: 'json'
     }).done((response) => {
       console.log(response)
-      $('#show-select').show(
-        for (i = 0; i < response.length; i++){
-
+      $('#show-select').show()
+      $('select').append(`<option>Shows matching "${tvShow}"</option>`)
+      for (i = 0; i < response.length; i++){
+          $('select').append(`<option>${response[i].show.name}</option>`)
         }
-      )
     }).fail(() => {
       console.log('request failed')
     }).always(() => {
