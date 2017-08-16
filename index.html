@@ -12,17 +12,19 @@
     <img src="./images/tvm_api.png">
 
     <div class="browse">
-      <form id="search">
+
+      <form id="search" ng-submit="vm.showSearch()">
         <input type="search" placeholder="Search for a title..." id="show-search" ng-model="vm.searchString">
         <input type="submit" value="Submit">
       </form>
 
-      <select id="show-select">
-        <option value="">Select a show...</option>
-        <<option ng-repeat="result in vm.results">{{ result.show.name }}</option>
+      <select id="show-select" ng-model="vm.choice" ng-show="vm.results.length">
+        <option value="shows">Select a show...</option>
+        <option ng-repeat="result in vm.results" ng-value="$index"> {{ result.show.name }}</option>
       </select>
 
       <div id="show-detail">
+        <h4> {{ vm.results[vm.choice].show.name }}</h4>
       </div>
 
     </div>

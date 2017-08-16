@@ -16,7 +16,11 @@ function showSearch ($http) {
 }
 
 function TvController (showSearch) {
-  showSearch('girls').then((response) => {
-    this.results = response.data
-  })
+  this.showSearch = function () {
+    showSearch(this.searchString).then((response) => {
+      console.log('string')
+      this.results = response.data
+    })
+      console.log('another string')
+  }
 }
