@@ -6,7 +6,7 @@ $(document).on('click', () => {
     // Make sure to add your API key to the URL!
     var text = $('#show-search').val()
     // var option = `<option>${text}</option>`
-    var url = 'http://api.tvmaze.com/search/shows?q=girls'
+    var url = `http://api.tvmaze.com/search/shows?q=${text}`
     $.ajax({
       url: url,
       type: 'get',
@@ -15,8 +15,11 @@ $(document).on('click', () => {
       // (1) The URL endpoint for the JSON object.
       // (2) Type of HTTP request.
       // (3) Datatype. Usually JSON.
-    }).done(() => {
+    }).done((response) => {
+      console.log(response)
       $('#show-select').show()
+      $('#show-select').children().remove()
+      $('#show-select').append(`<option>Shows matching ${text} ...</option>`)
       $('#show-select').append(`<option>${text}</option>`)
       console.log('Ajax request success!')
       console.log(text)
