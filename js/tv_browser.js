@@ -17,10 +17,15 @@ $(document).on('click', () => {
       // (3) Datatype. Usually JSON.
     }).done((response) => {
       console.log(response)
+      var titles = response.map(function(obj){return obj.show.name})
+      console.log(titles)
+      // .order.orderDetails.map(function(obj){ return obj.a1 })
       $('#show-select').show()
       $('#show-select').children().remove()
       $('#show-select').append(`<option>Shows matching ${text} ...</option>`)
-      $('#show-select').append(`<option>${text}</option>`)
+      titles.forEach(function(x) {
+        $('#show-select').append(`<option>${x}</option>`)  
+      })
       console.log('Ajax request success!')
       console.log(text)
     }).fail(() => {
