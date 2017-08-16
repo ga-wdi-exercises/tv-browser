@@ -3,23 +3,32 @@
 <head>
   <title>TV Maze API Search</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 </head>
-<body>
-  <main>
+<body ng-app="tv_browser">
+  <main ng-controller='ShowSearchController as vm'>
 
-    <img src="./images/tvm_api.png"
+    <img src="./images/tvm_api.png">
 
     <div class="browse">
       <form id="search">
-        <input type="search" placeholder="Search for a title..." id="show-search">
-        <input type="submit" value="Submit">
+        <input type="search" placeholder="Search for a title..." id="show-search" ng-model="vm.searchString">
+        <button  ng-click="vm.search()">Submit </button>
       </form>
 
-      <select id="show-select">
+      <select id="show-select" ng-show="vm.shows.length" ng-model="vm.selectedShowIndex" ng-change="vm.selectShow()">
         <option value="">Select a show...</option>
+        <option ng-repeat="show in vm.shows" value="{{$index}}" ng-model="vm.currentShow">{{show.show.name}} </option>
       </select>
 
-      <div id="show-detail"></div>
+        {{vm.selectedShowIndex}}
+
+      <div id="show-detail">
+        <h1>{{vm.currentShow.show.name}}</h1>
+        <img ng-src="{{vm.currentShow.show.image['medium']}}">
+        <div ng-bind-html="vm.currentShow.show.summary">
+        </div>
+      </div>
 
     </div>
   </main>
