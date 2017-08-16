@@ -1,58 +1,57 @@
 // API Docs at:
 // http://www.tvmaze.com/api
 
-// search feature
-// http://api.tvmaze.com/search/shows?q=:query
-
 /* global $ */
 
+var showSelect = $('#show-select')
+var showSearch = $('#show-search')
+var showDetail = $('#show-detail')
+
 // show-select should be hidden by default
-$('#show-select').hide()
+showSelect.hide()
 
-// submit listener
-$('input[type="submit"]').on('click', (e) => {
-  var url = 'http://api.tvmaze.com/search/shows?q='
-
-  e.preventDefault()
+var populateSearchResults = function (query, results) {
+  showSelect.children().remove()
+  // the first select option should read "Shows matching keyword…".
+  var html = `<option value="">Shows matching ${query}</option>`
+  // it should be populated with all search results.
+  results.map((tvShow) => {
+    html += `<option id="${tvShow.show.id}">${tvShow.show.name}</option>`
+  })
+  showSelect.append(html)
   // the "#show-select" field should be un-hidden.
-  $('#show-select').show()
+  showSelect.show()
+}
 
-  var input = $('#show-search').val()
+// populate the "#show-detail" div with that show's
+// name and image.
+var displayDetails = function (show) {
+  showDetail.children().remove()
+  var name = `<h2>${show.name}</h2>`
+  var image = `<img src="${show.image.medium}"/>`
+  showDetail.append(name)
+  showDetail.append(image)
+}
+
+var queryShows = function (e) {
+  e.preventDefault()
+
+  var query = showSearch.val()
+  var url = 'http://api.tvmaze.com/search/shows?q=' + query
 
   $.ajax({
-    url: url + input,
+    url: url,
     type: 'get',
     dataType: 'json'
   }).done((response) => {
-    //
-    $('#show-select').children().remove()
-
-    // the first select option should read "Shows matching keyword…".
-    var html = `<option value="">Shows matching ${input}</option>`
-    // it should be populated with all search results.
-    response.map((tvShow) => {
-      html += `<option id="${tvShow.show.id}">${tvShow.show.name}</option>`
-    })
-
-    $('#show-select').append(html)
-
-    console.log(response)
+    populateSearchResults(query, response)
   }).fail((response) => {
-    console.log(response)
+    console.log('GET show search failed')
   })
-})
-// input listener
-$('show-search').on('type', () => {
+}
 
-})
-
-// Whenever the user selects a title from the #show-select field
-// (HINT: listen for a "change" event), the app should populate the
-// "#show-detail" div with that show's name and image.
-
-$('#show-select').on('change', function (e) {
-  var optionSelected = $('option:selected', this)
-  var idSelected = optionSelected.attr('id')
+var queryShow = function (e) {
+  var idSelected = $('option:selected', this).attr('id')
   var showUrl = 'http://api.tvmaze.com/shows/' + idSelected
 
   $.ajax({
@@ -60,12 +59,15 @@ $('#show-select').on('change', function (e) {
     type: 'get',
     dataType: 'json'
   }).done((response) => {
-    var name = `<h2>${response.name}</h2>`
-    image = `<img src="${response.image.medium}"/>`
-    $('#show-detail').children().remove()
-    $('#show-detail').append(name)
-    $('#show-detail').append(image)
+    displayDetails(response)
   }).fail(() => {
     console.log('Get Show Request Failed')
   })
-})
+}
+
+// submit listener
+$('input[type="submit"]').on('click', queryShows)
+// textbox change on input listener
+showSearch.on('input', queryShows)
+// select show listener
+showSelect.on('change', queryShow)
