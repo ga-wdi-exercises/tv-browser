@@ -4,7 +4,7 @@ $(document).on('click', () => {
   $('.submit').on('click', (event) => {
     event.preventDefault()
     // Make sure to add your API key to the URL!
-
+    var text = $('#show-search').val()
     var url = 'http://api.tvmaze.com/search/shows?q=girls'
     $.ajax({
       url: url,
@@ -17,6 +17,7 @@ $(document).on('click', () => {
     }).done(() => {
       $('#show-select').show()
       console.log('Ajax request success!')
+      console.log(text)
     }).fail(() => {
       console.log('Ajax request fails!')
     }).always(() => {
