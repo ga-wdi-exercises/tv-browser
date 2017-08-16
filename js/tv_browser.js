@@ -15,6 +15,7 @@ $(document).on('click', () => {
       // (2) Type of HTTP request.
       // (3) Datatype. Usually JSON.
     }).done(() => {
+      $('#show-select').show()
       console.log('Ajax request success!')
     }).fail(() => {
       console.log('Ajax request fails!')
