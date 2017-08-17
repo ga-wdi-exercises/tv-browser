@@ -19,19 +19,46 @@ $(document).on('click', () => {
       console.log(response)
       var titles = response.map(function(obj){return obj.show.name})
       console.log(titles)
-      // .order.orderDetails.map(function(obj){ return obj.a1 })
       $('#show-select').show()
       $('#show-select').children().remove()
       $('#show-select').append(`<option>Shows matching ${text} ...</option>`)
       titles.forEach(function(x) {
-        $('#show-select').append(`<option>${x}</option>`)  
+        $('#show-select').append(`<option>${x}</option>`)
       })
+      var selected_show = $('#show-select').children('option').text()
       console.log('Ajax request success!')
       console.log(text)
+      console.log(selected_show)
     }).fail(() => {
       console.log('Ajax request fails!')
     }).always(() => {
       console.log('This always happens regardless of successful ajax request or not.')
     })
   })
+  // Action for after first ajax response
+  $('#show-select').change(
+    function() {
+      var show = $('option:selected').val()
+      console.log(show)
+
+      var url = `http://api.tvmaze.com/singlesearch/shows?q=${show}`
+      $.ajax({
+        url: url,
+        type: 'get',
+        dataType: 'json'
+      }).done((response) => {
+        console.log(response)
+        console.log('Ajax request success!')
+        var title = response.name
+        var image = response.image.medium
+        var summary = response.summary
+        $('#show-detail').children().remove()
+        $('#show-detail').append(`<h2>${title}</h2><img src="${image}" alt=""><p>${summary}</p>`)
+      }).fail(() => {
+        console.log('Ajax request fails!')
+      }).always(() => {
+        console.log('This always happens regardless of successful ajax request or not.')
+      })
+    }
+  )
 })
