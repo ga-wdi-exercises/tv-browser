@@ -16,16 +16,16 @@ $('.submit').on('click', () => {
     response.forEach((item) => {
       $(`<option value="${item.show.id}">${item.show.name}</option>`).appendTo('#show-select')
     })
-    
-        var option = $("option").val()
-        console.log(option)
+
+    var option = $("#show-select").val()
+    console.log(option)
     $('#show-select').show()
     $(`<img class ='results' src=${response[1].show.image.original}>`).appendTo('main')
-    $('<div class ="results" ></div>').appendTo('main').text(`${response[1].show.summary}`)
+    $('<div class ="results" ></div>').appendTo('main').html(`${response[1].show.summary}`)
 
   }).fail(() => {
     $('<div class="results"></div>').appendTo('main').text()
   }).always(() => {
-    $('<div class="results"></div>').appendTo('main').text()
+    $('').appendTo('main').text()
     })
   })
