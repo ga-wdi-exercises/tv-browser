@@ -21,7 +21,7 @@ $('.submit').on('click', () => {
     $('#show-select').change(function () {
       // $('.results').remove() will clean the results when click in another option
     $('.results').remove()
-    var index = $('#show-select').prop('selectedIndex') + 0
+    var index = $('#show-select').prop('selectedIndex') 
     // name & summary requested before show.image
     $('#show-detail').append(`<div class='results'>${response[index].show.name}</div>`)
     $('#show-detail').append(`<div class='results'>${response[index].show.summary}</div>`)
