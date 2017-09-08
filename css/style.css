@@ -34,3 +34,12 @@ select {
 .fail {
   color: red;
 }
+
+#show-select {
+  display: none;
+}
+
+img.results {
+  height: 200px;
+  width: 150px;
+}
