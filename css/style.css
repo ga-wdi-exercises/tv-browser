@@ -1,36 +1,49 @@
-body {
-  font: 16px/1.5 Courier, monospace;
-  margin: 0;
+:root {
+  --teal: #008080;
+  --red: #ff0000;
 }
 
 main {
-  width: 80%;
+  font-family: sans-serif;
   margin: 0 auto;
+  text-align: center;
+  width: 80%;
+}
+
+form {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-.browse {
-  padding: 10px 25px;
-}
-
-a {
-  color: #c00;
+img {
+  margin: 1rem 0;
+  max-width: 500px;
+  width: 100%;
 }
 
 input {
-  width: 20em;
+  border: 1px solid var(--teal);
+  font-size: 1.5rem;
+  padding: .5rem .75rem;
+}
+
+input:focus {
+  box-shadow: 0px 0px 3px var(--teal);
+  outline: none;
 }
 
 input[type="search"] {
-  font-size: 200%;
-  margin: 1em;
+  flex-grow: 1;
+  width: 100%;
 }
 
-select {
-  font-size: 150%;
+input[type="submit"] {
+  background-color: var(--teal);
+  color: #fff;
+  flex-grow: 0;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
+
 .fail {
-  color: red;
+  color: var(--red);
 }
