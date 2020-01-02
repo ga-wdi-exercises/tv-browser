@@ -1,6 +1,6 @@
 function search (keyword) {
   let urlEncodedSearchTerm = escape(keyword)
-  let url = `http://api.tvmaze.com/search/shows?q=${urlEncodedSearchTerm}`
+  let url = `https://api.tvmaze.com/search/shows?q=${urlEncodedSearchTerm}`
 
   $.getJSON(url)
     .done(function (response) {
@@ -31,7 +31,7 @@ function buildOptionsForSelect (searchTerm, responseData) {
 function show (tvMazeId) {
   if (!tvMazeId) return
 
-  let url = `http://api.tvmaze.com/shows/${tvMazeId}`
+  let url = `https://api.tvmaze.com/shows/${tvMazeId}`
 
   $.getJSON(url).then(function (show) {
     let detail = `
